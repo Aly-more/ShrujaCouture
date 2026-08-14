@@ -158,14 +158,17 @@ My Orders | Shruja Couture
 
                     {% if order.items.count > 1 %}
 
-                    <span class="more-items">
+                    <span
+                        class="more-items-toggle"
+                        onclick="toggleOrderItems('items-{{ order.id }}')"
+                    >
 
-                        + {{ order.items.count|add:"-1" }} more item{{ order.items.count|add:"-1"|pluralize }}
+                        View {{ order.items.count|add:"-1" }}
+                        more item{{ order.items.count|add:"-1"|pluralize }}
 
                     </span>
 
                     {% endif %}
-
                 </div>
 
             </div>
@@ -193,6 +196,73 @@ My Orders | Shruja Couture
         </div>
 
         <!-- ==========================================
+                EXTRA ITEMS
+        ========================================== -->
+
+        {% if order.items.count > 1 %}
+
+        <div
+            id="items-{{ order.id }}"
+            class="extra-order-items">
+
+            {% for item in order.items.all %}
+
+                {% if not forloop.first %}
+
+                <div class="extra-item">
+
+                    <div class="extra-item-image">
+
+                        <img
+                            src="{{ item.product.main_image.url }}"
+                            alt="{{ item.product.name }}"
+                        >
+
+                    </div>
+
+                    <div class="extra-item-info">
+
+                        <h4>
+
+                            {{ item.product.name }}
+
+                        </h4>
+
+                        <p>
+
+                            Size {{ item.variant.size }}
+
+                            <span class="product-divider">
+
+                                •
+
+                            </span>
+
+                            Colour {{ item.variant.color }}
+
+                            <span class="product-divider">
+
+                                •
+
+                            </span>
+
+                            Qty {{ item.quantity }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+        <!-- ==========================================
                 CARD BODY
         ========================================== -->
 
@@ -202,7 +272,8 @@ My Orders | Shruja Couture
 
                 <div class="order-meta">
 
-                    {{ order.items.count }} item{{ order.items.count|pluralize }}
+                    {{ order.items.count }}
+                    item{{ order.items.count|pluralize }}
 
                 </div>
 
@@ -241,5 +312,21 @@ My Orders | Shruja Couture
 </div>
 
 {% endif %}
+
+<script>
+
+function toggleOrderItems(id)
+{
+    const element = document.getElementById(id);
+
+    if (!element)
+    {
+        return;
+    }
+
+    element.classList.toggle("show");
+}
+
+</script>
 
 {% endblock %}

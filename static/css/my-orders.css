@@ -804,6 +804,77 @@
     font-size:34px;
 }
 
+
+.extra-order-items
+{
+    display:none;
+    margin-top:20px;
+}
+
+.extra-order-items.show
+{
+    display:block;
+}
+
+.extra-item
+{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    padding:15px 0;
+
+    border-top:1px solid #eee;
+}
+
+.extra-item img
+{
+    width:70px;
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+}
+
+.more-items-toggle
+{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    margin-top:14px;
+
+    font-size:14px;
+    font-weight:500;
+    letter-spacing:1px;
+    text-transform:uppercase;
+
+    color:#b16a43;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+}
+
+.more-items-toggle::after
+{
+    content:"→";
+
+    transition:transform .25s ease;
+}
+
+.more-items-toggle:hover
+{
+    /* text-decoration:underline; */
+    color:#8f5f46;
+}
+
+.more-items-toggle:hover::after
+{
+    transform:translateX(4px);
+}
+
 /* ==========================================
    LOADING
 ========================================== */
