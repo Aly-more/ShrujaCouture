@@ -1,0 +1,272 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Shipping Policy | Shruja Couture
+{% endblock %}
+
+{% block content %}
+
+<!-- ==========================================
+                HERO
+========================================== -->
+
+<section class="policy-hero">
+
+    <div class="policy-container">
+
+        <span class="policy-tag">
+
+            SHIPPING POLICY
+
+        </span>
+
+        <h1>
+
+            Reliable Delivery,
+            Thoughtfully Packed
+
+        </h1>
+
+        <p>
+
+            Every Shruja Couture order is carefully packed and
+            shipped with attention to detail, ensuring your purchase
+            reaches you safely and beautifully.
+
+        </p>
+
+        <small>
+
+            Last Updated: July 2026
+
+        </small>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+            POLICY CONTENT
+========================================== -->
+
+<section class="policy-content">
+
+    <div class="policy-container">
+
+        <!-- ==========================
+            Processing Time
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                1. Order Processing
+
+            </h2>
+
+            <p>
+
+                Orders are processed within
+                <strong>1–3 business days</strong>
+                after payment confirmation.
+                Orders placed on Sundays or public holidays
+                will be processed on the next working day.
+
+            </p>
+
+        </div>
+
+
+        <!-- ==========================
+            Delivery
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                2. Estimated Delivery
+
+            </h2>
+
+            <ul>
+
+                <li>
+
+                    Metro Cities: 2–5 business days.
+
+                </li>
+
+                <li>
+
+                    Other Cities: 4–8 business days.
+
+                </li>
+
+                <li>
+
+                    Remote locations may require additional time.
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- ==========================
+            Shipping Charges
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                3. Shipping Charges
+
+            </h2>
+
+            <p>
+
+                Shipping charges, if applicable,
+                are calculated and displayed during checkout.
+                Any promotional free shipping offers
+                will also be shown before payment.
+
+            </p>
+
+        </div>
+
+
+        <!-- ==========================
+            Tracking
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                4. Order Tracking
+
+            </h2>
+
+            <p>
+
+                Once your order has been dispatched,
+                you'll receive tracking details via
+                email or SMS (where available),
+                allowing you to follow your shipment
+                until it arrives.
+
+            </p>
+
+        </div>
+
+
+        <!-- ==========================
+            Delays
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                5. Delivery Delays
+
+            </h2>
+
+            <ul>
+
+                <li>
+
+                    Weather conditions.
+
+                </li>
+
+                <li>
+
+                    Public holidays.
+
+                </li>
+
+                <li>
+
+                    Festival seasons.
+
+                </li>
+
+                <li>
+
+                    Courier partner delays.
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- ==========================
+            Address
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                6. Shipping Address
+
+            </h2>
+
+            <p>
+
+                Please ensure your shipping address,
+                contact number, and PIN code are accurate
+                before placing your order.
+                Shruja Couture cannot be held responsible
+                for delays caused by incorrect shipping details.
+
+            </p>
+
+        </div>
+
+
+        <!-- ==========================
+            Need Help?
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                7. Need Assistance?
+
+            </h2>
+
+            <p>
+
+                If you have any questions regarding your shipment,
+                feel free to contact our support team.
+                We'll be happy to assist you.
+
+            </p>
+
+            <a
+                href="{% url 'products:contact' %}"
+                class="policy-btn"
+            >
+
+                Contact Us
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

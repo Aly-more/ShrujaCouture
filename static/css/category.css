@@ -1,0 +1,597 @@
+/* ==========================================
+        SHOP BY CATEGORY
+========================================== */
+
+.categories{
+
+    width:90%;
+    max-width:1450px;
+
+    margin:140px auto;
+
+}
+
+
+/* ==========================================
+        SECTION TITLE
+========================================== */
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:80px;
+
+}
+
+.section-title h2{
+
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:72px;
+
+    font-weight:600;
+
+    line-height:1.05;
+
+    color:#342725;
+
+    margin:0 0 12px;
+
+}
+
+.section-title p{
+
+    font-family:var(--font-body);
+
+    color:#7A6C65;
+
+    font-size:18px;
+
+    line-height:1.6;
+
+    letter-spacing:.5px;
+
+    margin:0;
+
+}
+
+
+/* ==========================================
+        CATEGORY GRID
+========================================== */
+
+.category-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2, 1fr);
+
+    gap:35px;
+
+}
+
+
+/* Optional featured category */
+
+.featured-category{
+
+    grid-column:1 / -1;
+
+    height:560px;
+
+}
+
+
+/* ==========================================
+        CATEGORY CARD
+========================================== */
+
+.category-card{
+
+    position:relative;
+
+    display:block;
+
+    width:100%;
+
+    aspect-ratio: 3 / 4;
+
+    height: auto;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    text-decoration:none;
+
+    background:#EEE8E2;
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.08);
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease;
+
+}
+
+.category-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.20);
+
+}
+
+
+/* ==========================================
+        IMAGE
+========================================== */
+
+.category-card img{
+
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position: center top;
+    background:#EEE8E2;
+
+    transition:
+        transform .8s ease,
+        filter .45s ease;
+
+}
+
+.category-card:hover img{
+
+    transform:scale(1.08);
+
+    filter:brightness(.92);
+
+}
+
+
+/* ==========================================
+        DARK OVERLAY
+========================================== */
+
+.category-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.72) 0%,
+        rgba(0,0,0,.28) 48%,
+        rgba(0,0,0,0) 78%
+    );
+
+    transition:background .45s ease;
+
+}
+
+.category-card:hover::after{
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.86) 0%,
+        rgba(0,0,0,.42) 48%,
+        rgba(0,0,0,.08) 80%
+    );
+
+}
+
+
+/* ==========================================
+        CATEGORY TEXT
+========================================== */
+
+.category-overlay{
+
+    position:absolute;
+
+    left:50px;
+    right:50px;
+    bottom:50px;
+
+    z-index:5;
+
+    color:#fff;
+
+    transition:transform .45s ease;
+
+}
+
+.category-card:hover .category-overlay{
+
+    transform:translateY(-12px);
+
+}
+
+.category-overlay h3{
+
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:44px;
+
+    font-weight:600;
+
+    line-height:1;
+
+    margin:0 0 16px;
+
+    color:#fff;
+
+    text-shadow:
+        0 8px 24px rgba(0,0,0,.30);
+
+}
+
+.category-overlay p{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:0;
+
+    font-family:var(--font-body);
+
+    font-size:14px;
+
+    font-weight:500;
+
+    line-height:1.4;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    color:#F8F5F2;
+
+    opacity:.92;
+
+}
+
+.category-overlay span{
+
+    display:inline-block;
+
+    transition:transform .35s ease;
+
+}
+
+.category-card:hover .category-overlay span{
+
+    transform:translateX(12px);
+
+}
+
+
+/* ==========================================
+        SHINE EFFECT
+========================================== */
+
+.category-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-100%;
+    left:-35%;
+
+    width:30%;
+    height:280%;
+
+    z-index:4;
+
+    pointer-events:none;
+
+    background:rgba(255,255,255,.18);
+
+    transform:rotate(25deg);
+
+    transition:left .9s ease;
+
+}
+
+.category-card:hover::before{
+
+    left:140%;
+
+}
+
+
+/* ==========================================
+        TABLET
+========================================== */
+
+@media (max-width:992px){
+
+    .categories{
+
+        width:88%;
+
+        margin:110px auto;
+
+    }
+
+    .section-title{
+
+        margin-bottom:60px;
+
+    }
+
+    .section-title h2{
+
+        font-size:54px;
+
+    }
+
+    .section-title p{
+
+        font-size:16px;
+
+    }
+
+    .category-grid{
+
+        grid-template-columns:1fr;
+
+        gap:28px;
+
+    }
+
+    .category-card,
+    .featured-category{
+
+        height:420px;
+
+    }
+
+    .category-overlay{
+
+        left:38px;
+        right:38px;
+        bottom:38px;
+
+    }
+
+    .category-overlay h3{
+
+        font-size:48px;
+
+    }
+
+}
+
+
+/* ==========================================
+        MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+    .categories{
+
+        width:calc(100% - 36px);
+
+        margin:80px auto;
+
+    }
+
+    .section-title{
+
+        margin-bottom:38px;
+
+        padding:0 8px;
+
+    }
+
+    .section-title h2{
+
+        font-size:40px;
+
+        line-height:1.05;
+
+        margin-bottom:10px;
+
+    }
+
+    .section-title p{
+
+        max-width:320px;
+
+        margin:0 auto;
+
+        font-size:14px;
+
+        line-height:1.6;
+
+    }
+
+    .category-grid{
+
+        gap:20px;
+
+    }
+
+    .category-card,
+    .featured-category{
+
+        height:360px;
+
+        border-radius:16px;
+
+    }
+
+    .category-overlay{
+
+        left:24px;
+        right:24px;
+        bottom:26px;
+
+    }
+
+    .category-overlay h3{
+
+        font-size:38px;
+
+        margin-bottom:10px;
+
+    }
+
+    .category-overlay p{
+
+        font-size:11px;
+
+        letter-spacing:2px;
+
+        gap:7px;
+
+    }
+
+}
+
+
+/* ==========================================
+        SMALL MOBILE
+========================================== */
+
+@media (max-width:480px){
+
+    .categories{
+
+        width:calc(100% - 28px);
+
+        margin:70px auto;
+
+    }
+
+    .section-title{
+
+        margin-bottom:32px;
+
+    }
+
+    .section-title h2{
+
+        font-size:36px;
+
+    }
+
+    .section-title p{
+
+        font-size:13px;
+
+    }
+
+    .category-grid{
+
+        gap:16px;
+
+    }
+
+    .category-card,
+    .featured-category{
+
+        /*
+        Portrait-style category cards look much
+        better on narrow fashion-store layouts.
+        */
+
+        height:330px;
+
+        border-radius:14px;
+
+    }
+
+    .category-overlay{
+
+        left:20px;
+        right:20px;
+        bottom:22px;
+
+    }
+
+    .category-overlay h3{
+
+        font-size:34px;
+
+    }
+
+    .category-overlay p{
+
+        font-size:10px;
+
+        letter-spacing:1.8px;
+
+    }
+
+}
+
+
+/* ==========================================
+        TOUCH DEVICES
+========================================== */
+
+@media (hover:none){
+
+    /*
+    Phones/tablets don't have a real hover state,
+    so don't leave cards visually transformed
+    after tapping them.
+    */
+
+    .category-card:hover{
+
+        transform:none;
+
+        box-shadow:
+            0 18px 45px rgba(0,0,0,.08);
+
+    }
+
+    .category-card:hover img{
+
+        transform:none;
+
+        filter:none;
+
+    }
+
+    .category-card:hover .category-overlay{
+
+        transform:none;
+
+    }
+
+    .category-card:hover .category-overlay span{
+
+        transform:none;
+
+    }
+
+    .category-card::before{
+
+        display:none;
+
+    }
+
+}

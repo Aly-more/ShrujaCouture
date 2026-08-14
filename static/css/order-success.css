@@ -1,0 +1,432 @@
+/* ==========================================
+        ORDER SUCCESS PAGE
+========================================== */
+
+.order-success-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 120px 20px 80px;
+
+    background: #F8F5F2;
+
+}
+
+
+/* ==========================================
+        CONTAINER
+========================================== */
+
+.success-container {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    background: #FFFFFF;
+
+    border-radius: 24px;
+
+    padding: 70px 60px;
+
+    text-align: center;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+
+}
+
+
+/* ==========================================
+        SUCCESS ICON
+========================================== */
+
+.success-icon {
+
+    width: 110px;
+
+    height: 110px;
+
+    margin: 0 auto 30px;
+
+    border-radius: 50%;
+
+    background: #EAF7EE;
+
+    color: #2F8F57;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 52px;
+
+    font-weight: 700;
+
+}
+
+
+/* ==========================================
+        TEXT
+========================================== */
+
+.success-tag {
+
+    display: inline-block;
+
+    margin-bottom: 18px;
+
+    letter-spacing: 4px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #A65E3B;
+
+}
+
+.success-container h1 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 56px;
+
+    font-weight: 600;
+
+    color: #1F1F1F;
+
+    margin-bottom: 20px;
+
+}
+
+.success-message {
+
+    max-width: 620px;
+
+    margin: 0 auto;
+
+    color: #666666;
+
+    line-height: 1.9;
+
+    font-size: 16px;
+
+}
+
+
+/* ==========================================
+        INFO CARDS
+========================================== */
+
+.success-info {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+
+    margin-top: 50px;
+
+}
+
+.info-card {
+
+    padding: 28px;
+
+    border: 1px solid #ECE7E1;
+
+    border-radius: 18px;
+
+    background: #FCFAF8;
+
+}
+
+.info-card h4 {
+
+    margin-bottom: 10px;
+
+    font-size: 15px;
+
+    color: #888;
+
+    font-weight: 500;
+
+}
+
+.info-card p {
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    color: #1F1F1F;
+
+}
+
+.paid {
+
+    color: #2F8F57 !important;
+
+}
+
+
+/* ==========================================
+        TIMELINE
+========================================== */
+
+.order-timeline {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 60px 0;
+
+}
+
+.timeline-step {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 120px;
+
+}
+
+.timeline-dot {
+
+    width: 18px;
+
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: #D8D8D8;
+
+}
+
+.timeline-step.active .timeline-dot {
+
+    background: #A65E3B;
+
+}
+
+.timeline-step span {
+
+    font-size: 14px;
+
+    color: #555;
+
+}
+
+.timeline-line {
+
+    flex: 1;
+
+    height: 2px;
+
+    background: #E5E5E5;
+
+    max-width: 90px;
+
+}
+
+
+/* ==========================================
+        BUTTONS
+========================================== */
+
+.success-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+}
+
+.success-buttons a {
+
+    text-decoration: none;
+
+}
+
+.primary-btn,
+
+.secondary-btn {
+
+    min-width: 220px;
+
+    padding: 15px 30px;
+
+    border-radius: 999px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: all .3s ease;
+
+    text-align: center;
+
+}
+
+.primary-btn {
+
+    background: #A65E3B;
+
+    color: #FFFFFF;
+
+}
+
+.primary-btn:hover {
+
+    background: #8D4D2E;
+
+}
+
+.secondary-btn {
+
+    border: 1px solid #A65E3B;
+
+    color: #A65E3B;
+
+    background: transparent;
+
+}
+
+.secondary-btn:hover {
+
+    background: #A65E3B;
+
+    color: #FFFFFF;
+
+}
+
+.order-number{
+    margin:32px auto;
+    padding:18px 24px;
+    max-width:420px;
+    background:#faf7f5;
+    border:1px solid #ece4df;
+    border-radius:14px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.order-number span{
+    color:#827772;
+    font-size:14px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.order-number strong{
+    color:#302421;
+    font-size:18px;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+.order-status{
+    margin-top:-12px;
+    margin-bottom:32px;
+    color:#6d625d;
+    text-align:center;
+}
+
+.order-status strong{
+    color:#2f8f57;
+}
+
+
+/* ==========================================
+        RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .order-success-page {
+
+        padding: 100px 16px 60px;
+
+    }
+
+    .success-container {
+
+        padding: 50px 30px;
+
+    }
+
+    .success-container h1 {
+
+        font-size: 40px;
+
+    }
+
+    .success-info {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .order-timeline {
+
+        flex-direction: column;
+
+        gap: 20px;
+
+    }
+
+    .timeline-line {
+
+        width: 2px;
+
+        height: 40px;
+
+        max-width: none;
+
+    }
+
+    .timeline-step {
+
+        min-width: auto;
+
+    }
+
+    .success-buttons {
+
+        flex-direction: column;
+
+    }
+
+    .primary-btn,
+
+    .secondary-btn {
+
+        width: 100%;
+
+    }
+
+}

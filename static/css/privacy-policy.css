@@ -1,0 +1,378 @@
+/* =====================================================
+   POLICY PAGE
+===================================================== */
+
+.policy-hero{
+
+    padding:140px 20px 80px;
+
+    background:#FBF8F5;
+
+    text-align:center;
+
+    border-bottom:1px solid #EFE7E1;
+
+}
+
+.policy-container{
+
+    width:min(900px,90%);
+
+    margin:auto;
+
+}
+
+.policy-tag{
+
+    display:inline-block;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    color:#B66E4C;
+
+    margin-bottom:18px;
+
+}
+
+.policy-hero h1{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:72px;
+
+    font-weight:500;
+
+    line-height:1;
+
+    color:#2F2421;
+
+    margin-bottom:25px;
+
+}
+
+.policy-hero p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    font-size:18px;
+
+    line-height:1.9;
+
+    color:#6D625D;
+
+}
+
+.policy-hero small{
+
+    display:block;
+
+    margin-top:25px;
+
+    color:#A18C82;
+
+    font-size:14px;
+
+    letter-spacing:1px;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.policy-content{
+
+    background:#FBF8F5;
+
+    padding:90px 20px 120px;
+
+}
+
+.policy-block{
+
+    background:#fff;
+
+    padding:45px;
+
+    border-radius:24px;
+
+    margin-bottom:35px;
+
+    border:1px solid #EEE6E0;
+
+    transition:.35s ease;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.04);
+
+}
+
+.policy-block:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+}
+
+.policy-block h2{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:42px;
+
+    font-weight:500;
+
+    color:#2F2421;
+
+    margin-bottom:22px;
+
+}
+
+.policy-block p{
+
+    font-size:17px;
+
+    line-height:1.9;
+
+    color:#655A55;
+
+}
+
+
+/* =====================================================
+   LIST
+===================================================== */
+
+.policy-block ul{
+
+    list-style:none;
+
+    margin-top:18px;
+
+}
+
+.policy-block ul li{
+
+    position:relative;
+
+    padding-left:38px;
+
+    margin-bottom:18px;
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    color:#655A55;
+
+}
+
+.policy-block ul li::before{
+
+    content:"✓";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:24px;
+
+    height:24px;
+
+    border-radius:50%;
+
+    background:#F6ECE7;
+
+    color:#B66E4C;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.policy-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-top:30px;
+
+    padding:16px 34px;
+
+    border-radius:999px;
+
+    background:#3E2B27;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    transition:.35s ease;
+
+}
+
+.policy-btn:hover{
+
+    background:#B66E4C;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 35px rgba(182,110,76,.25);
+
+}
+
+
+/* =====================================================
+   SCROLL ANIMATION
+===================================================== */
+
+.policy-block{
+
+    opacity:0;
+
+    transform:translateY(35px);
+
+    animation:fadePolicy .8s forwards;
+
+}
+
+.policy-block:nth-child(2){
+
+    animation-delay:.08s;
+
+}
+
+.policy-block:nth-child(3){
+
+    animation-delay:.16s;
+
+}
+
+.policy-block:nth-child(4){
+
+    animation-delay:.24s;
+
+}
+
+.policy-block:nth-child(5){
+
+    animation-delay:.32s;
+
+}
+
+.policy-block:nth-child(6){
+
+    animation-delay:.40s;
+
+}
+
+.policy-block:nth-child(7){
+
+    animation-delay:.48s;
+
+}
+
+.policy-block:nth-child(8){
+
+    animation-delay:.56s;
+
+}
+
+@keyframes fadePolicy{
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:768px){
+
+    .policy-hero{
+
+        padding:110px 20px 60px;
+
+    }
+
+    .policy-hero h1{
+
+        font-size:48px;
+
+    }
+
+    .policy-hero p{
+
+        font-size:16px;
+
+    }
+
+    .policy-content{
+
+        padding:60px 20px 80px;
+
+    }
+
+    .policy-block{
+
+        padding:30px;
+
+        border-radius:18px;
+
+    }
+
+    .policy-block h2{
+
+        font-size:32px;
+
+    }
+
+    .policy-block p,
+
+    .policy-block li{
+
+        font-size:15px;
+
+    }
+
+}

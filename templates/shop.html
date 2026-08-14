@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Shop | Shruja Couture
+{% endblock %}
+
+{% block content %}
+
+<section class="shop-page">
+
+    <!-- ==========================================
+                SHOP HEADER
+    =========================================== -->
+
+    <header class="shop-header">
+
+        <span class="shop-tag">
+            SHRUJA COUTURE
+        </span>
+
+        <h1>
+            Shop
+        </h1>
+
+        <p>
+            Discover modern Indian silhouettes designed
+            for effortless elegance.
+        </p>
+
+    </header>
+
+
+    <!-- ==========================================
+                CATEGORY NAVIGATION
+    =========================================== -->
+
+    <nav class="shop-category-nav">
+
+        <a
+            href="{% url 'products:shop' %}"
+            class="active"
+        >
+            All
+        </a>
+
+        {% for category in categories %}
+
+            <a href="{% url 'products:category_products' category.id %}">
+                {{ category.name }}
+            </a>
+
+        {% endfor %}
+
+    </nav>
+
+
+    <!-- ==========================================
+                SHOP TOOLBAR
+    =========================================== -->
+
+    <div class="shop-toolbar">
+
+        <p>
+            {{ products|length }}
+            {% if products|length == 1 %}
+                Product
+            {% else %}
+                Products
+            {% endif %}
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+                    PRODUCTS
+    =========================================== -->
+
+    <div class="product-grid">
+
+        {% for product in products %}
+
+            {% include "includes/product_card.html" %}
+
+        {% empty %}
+
+            <div class="shop-empty">
+
+                <span>
+                    SHRUJA COUTURE
+                </span>
+
+                <h2>
+                    Nothing here yet
+                </h2>
+
+                <p>
+                    New pieces will be arriving soon.
+                </p>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+                QUICK ADD MODAL
+========================================== -->
+
+<div
+    id="quickAddModal"
+    class="quick-add-modal"
+>
+
+    <div class="quick-add-content">
+
+        <span class="close-modal">
+            &times;
+        </span>
+
+        <h2 id="modalProductName"></h2>
+
+        <h4>
+            Select Size
+        </h4>
+
+        <div id="modalSizes"></div>
+
+        <button
+            id="modalAddBtn"
+            class="shop-btn"
+            type="button"
+        >
+            Add to Bag
+        </button>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{% static 'js/home.js' %}"></script>
+
+{% endblock %}

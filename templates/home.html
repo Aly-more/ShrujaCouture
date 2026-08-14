@@ -1,0 +1,353 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Home | Shruja Couture
+{% endblock %}
+
+{% block content %}
+
+
+<!-- ==========================
+        LUXURY HERO
+========================== -->
+
+<section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <span class="hero-tag">
+            SHRUJA COUTURE
+        </span>
+
+        <h1>
+            Modern Indian
+            <br>
+            Luxury
+        </h1>
+
+        <p>
+            Timeless silhouettes inspired by Indian craftsmanship,
+            designed for the confident modern woman.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{% url 'products:shop' %}" class="hero-primary">
+                Shop Collection
+            </a>
+
+            <a href="{% url 'products:new_arrivals' %}" class="hero-secondary">
+                New Arrivals →
+            </a>
+
+        </div>
+
+        <div class="hero-footer">
+            NEW COLLECTION 2026
+        </div>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <img
+            src="{% static 'images/hero-model.png' %}"
+            alt="Shruja Couture Hero"
+        >
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================
+        SHOP BY CATEGORY
+========================== -->
+
+<section class="categories">
+
+    <div class="section-title">
+
+        <h2>
+            Shop by Category
+        </h2>
+
+        <p>
+            Discover styles curated for every occasion.
+        </p>
+
+    </div>
+
+
+    <div class="category-grid">
+
+        {% for category in categories %}
+
+            <a
+                href="{% url 'products:category_products' category.id %}"
+                class="category-card"
+            >
+
+                {% if category.image %}
+
+                    <img
+                        src="{{ category.image.url }}"
+                        alt="{{ category.name }}"
+                        loading="lazy"
+                    >
+
+                {% endif %}
+
+
+                <div class="category-overlay">
+
+                    <h3>
+                        {{ category.name }}
+                    </h3>
+
+                    <p>
+                        Explore Collection
+                        <span>→</span>
+                    </p>
+
+                </div>
+
+            </a>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+{% comment %}
+
+<!-- ==========================
+        FEATURED COLLECTION
+========================== -->
+
+<section class="featured-section">
+
+    <div class="featured-image">
+
+        <img
+            src="{% static 'images/hero.png' %}"
+            alt="Monsoon Edit"
+        >
+
+    </div>
+
+
+    <div class="featured-content">
+
+        <span>
+            FEATURED COLLECTION
+        </span>
+
+        <h2>
+            The Monsoon Edit
+        </h2>
+
+        <p>
+            Handcrafted silhouettes inspired by effortless elegance,
+            designed for every celebration and every season.
+        </p>
+
+        <a href="#">
+            Discover Now →
+        </a>
+
+    </div>
+
+</section>
+
+{% endcomment %}
+
+
+
+<!-- ==========================
+        NEW ARRIVALS
+========================== -->
+
+<section class="new-arrivals">
+
+    <div class="section-title">
+
+        <h2>
+            New Arrivals
+        </h2>
+
+        <p>
+            Fresh styles just added to our collection.
+        </p>
+
+    </div>
+
+
+    <div class="product-grid">
+
+        {% for product in new_arrivals %}
+
+            {% include "includes/product_card.html" %}
+
+        {% empty %}
+
+            <p class="no-products">
+                New pieces are coming soon.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================
+        SHRUJA JOURNAL
+========================== -->
+
+<section class="journal-section">
+
+    <div class="section-title">
+
+        <h2>
+            The Shruja World
+        </h2>
+
+        <p>
+            A glimpse into our collections, inspirations and everyday luxury.
+        </p>
+
+    </div>
+
+
+    <div class="journal-slider">
+
+        <div
+            class="journal-track"
+            id="journalTrack"
+        >
+
+            {% for post in instagram_posts %}
+
+                <a
+                    href="{{ post.instagram_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="journal-card"
+                >
+
+                    <img
+                        src="{{ post.image.url }}"
+                        alt="{{ post.caption }}"
+                        loading="lazy"
+                    >
+
+                    <div class="journal-overlay">
+
+                        <span>
+                           Step Inside ↗
+                        </span>
+
+                    </div>
+
+                </a>
+
+            {% endfor %}
+
+
+
+            <!-- Duplicate images for infinite loop -->
+
+            {% for post in instagram_posts %}
+
+                <a
+                    href="{{ post.instagram_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="journal-card"
+                >
+
+                    <img
+                        src="{{ post.image.url }}"
+                        alt="{{ post.caption }}"
+                        loading="lazy"
+                    >
+
+                    <div class="journal-overlay">
+
+                        <span>
+                            Step Inside ↗
+                        </span>
+
+                    </div>
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        QUICK ADD MODAL
+========================== -->
+
+<div
+    id="quickAddModal"
+    class="quick-add-modal"
+>
+
+    <div class="quick-add-content">
+
+        <span
+            class="close-modal"
+            aria-label="Close"
+        >
+            &times;
+        </span>
+
+        <h2 id="modalProductName"></h2>
+
+        <label>
+            Size
+        </label>
+
+        <div id="modalSizes"></div>
+
+        <div class="quick-add-divider"></div>
+
+        <button
+            id="modalAddBtn"
+            type="button"
+        >
+            Add to Bag
+        </button>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script src="{% static 'js/home.js' %}"></script>
+
+{% endblock %}

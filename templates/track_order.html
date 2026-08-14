@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}
+Track Order | Shruja Couture
+{% endblock %}
+
+{% block content %}
+
+<!-- ==========================================
+                HERO SECTION
+========================================== -->
+
+<section class="page-hero">
+
+    <span class="page-tag">
+        CUSTOMER CARE
+    </span>
+
+    <h1>
+        Track Your Order
+    </h1>
+
+    <p>
+        Stay updated on your order status.
+        We're working on a dedicated tracking system
+        to make your shopping experience even smoother.
+    </p>
+
+</section>
+
+
+<!-- ==========================================
+                TRACK ORDER CARD
+========================================== -->
+
+<section class="track-order-section">
+
+    <div class="track-card">
+
+        <div class="track-icon">
+
+            <i data-lucide="package-search"></i>
+
+        </div>
+
+        <h2>
+            Order Tracking Coming Soon
+        </h2>
+
+        <p>
+            We're currently building a seamless order
+            tracking experience for Shruja Couture.
+        </p>
+
+        <p>
+            Until then, for updates regarding your order,
+            please contact us through WhatsApp, Instagram
+            or our Contact page.
+        </p>
+
+        <a
+            href="{% url 'products:contact' %}"
+            class="shop-btn"
+        >
+
+            Contact Support
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+    lucide.createIcons();
+
+</script>
+
+{% endblock %}

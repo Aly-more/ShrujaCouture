@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Return Policy | Shruja Couture
+{% endblock %}
+
+{% block content %}
+
+<!-- ==========================================
+                HERO
+========================================== -->
+
+<section class="policy-hero">
+
+    <div class="policy-container">
+
+        <span class="policy-tag">
+
+            RETURN POLICY
+
+        </span>
+
+        <h1>
+
+            No Return &
+            Exchange Policy
+
+        </h1>
+
+        <p>
+
+            Every Shruja Couture piece is carefully inspected
+            before dispatch to ensure it meets our quality standards.
+            As a result, all purchases are considered final.
+
+        </p>
+
+        <small>
+
+            Last Updated: July 2026
+
+        </small>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+            POLICY CONTENT
+========================================== -->
+
+<section class="policy-content">
+
+    <div class="policy-container">
+
+        <!-- ==========================
+            Policy
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                1. Final Sale Policy
+
+            </h2>
+
+            <p>
+
+                At Shruja Couture, we currently do not offer
+                returns, exchanges, or refunds once an order
+                has been placed and successfully delivered.
+
+            </p>
+
+        </div>
+
+
+        <!-- ==========================
+            Why
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                2. Why We Follow This Policy
+
+            </h2>
+
+            <ul>
+
+                <li>
+
+                    Every product is individually inspected before dispatch.
+
+                </li>
+
+                <li>
+
+                    We maintain strict quality checks for every order.
+
+                </li>
+
+                <li>
+
+                    Product descriptions and sizing information are provided to help customers make informed purchases.
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- ==========================
+            Before Ordering
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                3. Before You Place Your Order
+
+            </h2>
+
+            <ul>
+
+                <li>
+
+                    Review the product description carefully.
+
+                </li>
+
+                <li>
+
+                    Check the size guide before ordering.
+
+                </li>
+
+                <li>
+
+                    Verify your shipping address and contact details.
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- ==========================
+            Exceptions
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                4. Exceptional Situations
+
+            </h2>
+
+            <p>
+
+                If you receive an incorrect product or your order
+                arrives damaged due to shipping, please contact us
+                within <strong>48 hours</strong> of delivery with
+                clear photographs. Our team will review the issue
+                and assist you accordingly.
+
+            </p>
+
+        </div>
+
+
+        <!-- ==========================
+            Contact
+        =========================== -->
+
+        <div class="policy-block">
+
+            <h2>
+
+                5. Need Assistance?
+
+            </h2>
+
+            <p>
+
+                If you have any questions before placing your order,
+                we're always happy to help you choose the right product
+                and size.
+
+            </p>
+
+            <a
+                href="{% url 'products:contact' %}"
+                class="policy-btn"
+            >
+
+                Contact Us
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

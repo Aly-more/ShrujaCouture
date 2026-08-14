@@ -1,0 +1,229 @@
+/* ==========================================
+   MODAL OVERLAY
+========================================== */
+
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(8px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:9999;
+
+}
+
+.modal-overlay.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.cancel-modal{
+
+    width:480px;
+
+    max-width:90%;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:45px;
+
+    position:relative;
+
+    text-align:center;
+
+    transform:translateY(30px);
+
+    transition:.35s;
+
+    box-shadow:0 25px 70px rgba(0,0,0,.15);
+
+}
+
+.modal-overlay.active .cancel-modal{
+
+    transform:translateY(0);
+
+}
+
+
+/* ==========================================
+   CLOSE
+========================================== */
+
+.modal-close{
+
+    position:absolute;
+
+    top:18px;
+
+    right:18px;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    font-size:30px;
+
+}
+
+
+/* ==========================================
+   ICON
+========================================== */
+
+.modal-icon{
+
+    width:72px;
+
+    height:72px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#fdf3f3;
+
+    color:#c0392b;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:34px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================
+   TEXT
+========================================== */
+
+.cancel-modal h2{
+
+    margin-bottom:15px;
+
+}
+
+.cancel-modal p{
+
+    line-height:1.8;
+
+    color:#666;
+
+}
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.modal-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:35px;
+
+}
+
+.modal-buttons button{
+
+    flex:1;
+
+    height:54px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+.modal-secondary-btn{
+
+    background:#fff;
+
+    border:1px solid #ddd;
+
+}
+
+.modal-danger-btn{
+
+    background:#111;
+
+    color:#fff;
+
+    border:none;
+
+}
+
+.modal-danger-btn:hover{
+
+    background:#000;
+
+}
+
+.modal-danger-btn:disabled{
+
+    opacity:.7;
+
+    cursor:not-allowed;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+    .cancel-modal{
+
+        width:92%;
+
+        padding:30px;
+
+    }
+
+    .modal-buttons{
+
+        flex-direction:column;
+
+    }
+
+}

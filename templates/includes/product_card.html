@@ -1,0 +1,135 @@
+{% load static %}
+
+<div class="product-card">
+
+    <div class="product-image">
+
+        <div class="product-overlay"></div>
+
+
+        <!-- ==========================================
+                    SALE / NEW BADGE
+        =========================================== -->
+{% if product.discount_price %}
+
+    <span class="sale-badge">
+        SALE
+    </span>
+
+{% elif product.is_new_arrival %}
+
+    <span class="new-badge">
+        NEW
+    </span>
+
+{% endif %}
+        <!-- ==========================================
+                        WISHLIST
+        =========================================== -->
+
+        <button
+            type="button"
+            class="wishlist-btn {% if product.id in wishlist_ids %}active{% endif %}"
+            data-product="{{ product.id }}"
+            aria-label="Add {{ product.name }} to wishlist"
+        >
+
+            <i data-lucide="heart"></i>
+
+        </button>
+
+
+        <!-- ==========================================
+                    PRODUCT IMAGE
+        =========================================== -->
+
+        <a href="{% url 'products:product_detail' product.slug %}">
+
+            {% if product.main_image %}
+
+                <img
+                    src="{{ product.main_image.url }}"
+                    class="primary-image fly-image"
+                    alt="{{ product.name }}"
+                >
+
+            {% endif %}
+
+
+            {% if product.hover_image %}
+
+                <img
+                    src="{{ product.hover_image.url }}"
+                    class="secondary-image"
+                    alt="{{ product.name }}"
+                >
+
+            {% endif %}
+
+        </a>
+
+
+        <!-- ==========================================
+                        QUICK ADD
+        =========================================== -->
+
+        <button
+            type="button"
+            class="quick-add-btn"
+            data-product-id="{{ product.id }}"
+            data-product-name="{{ product.name }}"
+        >
+
+            Quick Add
+
+        </button>
+
+    </div>
+
+
+    <!-- ==========================================
+                    PRODUCT INFO
+    =========================================== -->
+
+    <div class="product-info">
+
+        <h3 class="product-title">
+
+            <a href="{% url 'products:product_detail' product.slug %}">
+
+                {{ product.name }}
+
+            </a>
+
+        </h3>
+
+
+        <!-- ==========================================
+                        PRICE
+        =========================================== -->
+
+        <div class="price-box">
+
+            {% if product.discount_price %}
+
+                <span class="discount-price">
+                    ₹{{ product.discount_price }}
+                </span>
+
+                <span class="original-price">
+                    ₹{{ product.price }}
+                </span>
+
+            {% else %}
+
+                <span class="discount-price">
+                    ₹{{ product.price }}
+                </span>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>

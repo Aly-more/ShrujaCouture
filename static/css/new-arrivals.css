@@ -1,0 +1,990 @@
+/* =====================================================
+        SHRUJA COUTURE — PRODUCT GRID
+===================================================== */
+
+
+/* =====================================================
+        NEW ARRIVALS SECTION
+===================================================== */
+
+.new-arrivals{
+
+    width:100%;
+
+    padding:30px 0 120px;
+
+}
+
+
+/* =====================================================
+        PRODUCT GRID
+===================================================== */
+
+.product-grid{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:65px auto 0;
+
+    display:grid;
+
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+
+    gap:38px;
+
+}
+
+
+/* =====================================================
+        PRODUCT CARD
+===================================================== */
+
+.product-card{
+
+    position:relative;
+
+    min-width:0;
+
+    overflow:hidden;
+
+    background:#FFFFFF;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.06);
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+
+}
+
+.product-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:
+        0 28px 65px rgba(0,0,0,.13);
+
+}
+
+
+/* =====================================================
+        PRODUCT IMAGE
+===================================================== */
+
+.product-image{
+
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:3 / 4.8;
+
+    overflow:hidden;
+
+    background:#F4F0EC;
+
+}
+
+.product-image a{
+
+    position:relative;
+
+    display:block;
+
+    width:100%;
+    height:100%;
+
+}
+
+
+/* =====================================================
+        PRODUCT IMAGES
+===================================================== */
+
+.primary-image,
+.secondary-image{
+
+    position:absolute;
+
+    inset:0;
+
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:
+        opacity .55s ease,
+        transform .75s ease;
+
+}
+
+.primary-image{
+
+    z-index:1;
+
+    opacity:1;
+
+}
+
+.secondary-image{
+
+    z-index:2;
+
+    opacity:0;
+
+}
+
+
+/* =====================================================
+        IMAGE HOVER
+===================================================== */
+
+.product-card:hover .primary-image{
+
+    opacity:0;
+
+    transform:scale(1.05);
+
+}
+
+.product-card:hover .secondary-image{
+
+    opacity:1;
+
+    transform:scale(1.05);
+
+}
+
+
+/* =====================================================
+        IMAGE OVERLAY
+===================================================== */
+
+.product-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:4;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.34) 0%,
+        rgba(0,0,0,.08) 42%,
+        transparent 72%
+    );
+
+    transition:opacity .35s ease;
+
+}
+
+.product-card:hover .product-overlay{
+
+    opacity:1;
+
+}
+
+
+/* =====================================================
+        NEW / SALE BADGES
+===================================================== */
+
+.new-badge,
+.sale-badge{
+
+    position:absolute;
+
+    top:16px;
+    left:16px;
+
+    z-index:10;
+
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-height:30px;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    color:#FFFFFF;
+
+    font-family:var(--font-body);
+
+    font-size:10px;
+
+    font-weight:600;
+
+    line-height:1;
+
+    letter-spacing:1.8px;
+
+    text-transform:uppercase;
+
+}
+
+.new-badge{
+
+    background:#B66E4C;
+
+}
+
+.sale-badge{
+
+    background:#8B2E2E;
+
+}
+
+
+/* =====================================================
+        WISHLIST BUTTON
+===================================================== */
+
+.wishlist-btn{
+
+    position:absolute;
+
+    top:15px;
+    right:15px;
+
+    z-index:12;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    width:42px;
+    height:42px;
+
+    padding:0;
+
+    appearance:none;
+    -webkit-appearance:none;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.94);
+
+    color:#342725;
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.08);
+
+    cursor:pointer;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        color .3s ease,
+        box-shadow .3s ease;
+
+}
+
+.wishlist-btn svg{
+
+    width:20px;
+    height:20px;
+
+    fill:none;
+
+    stroke:currentColor;
+
+    stroke-width:1.7;
+
+    transition:
+        fill .25s ease,
+        stroke .25s ease,
+        transform .25s ease;
+
+}
+
+
+/* =====================================================
+        WISHLIST HOVER
+===================================================== */
+
+.wishlist-btn:hover{
+
+    /* Keep circle white */
+
+    background:rgba(255,255,255,.98);
+
+    /* Only heart becomes brown */
+
+    color:#B66E4C;
+
+    transform:scale(1.08);
+
+    box-shadow:
+        0 10px 28px rgba(0,0,0,.12);
+
+}
+
+.wishlist-btn:hover svg{
+
+    fill:none;
+
+    stroke:#B66E4C;
+
+    transform:scale(1.05);
+
+}
+
+
+/* =====================================================
+        ACTIVE WISHLIST
+===================================================== */
+
+.wishlist-btn.active{
+
+    /* Circle remains white */
+
+    background:rgba(255,255,255,.94);
+
+    color:#B66E4C;
+
+}
+
+.wishlist-btn.active svg{
+
+    /* Saved product = filled brown heart */
+
+    fill:#B66E4C;
+
+    stroke:#B66E4C;
+
+}
+
+
+/* =====================================================
+        ACTIVE WISHLIST HOVER
+===================================================== */
+
+.wishlist-btn.active:hover{
+
+    background:#FFFFFF;
+
+    color:#B66E4C;
+
+    transform:scale(1.08);
+
+    box-shadow:
+        0 10px 28px rgba(0,0,0,.12);
+
+}
+
+.wishlist-btn.active:hover svg{
+
+    fill:#B66E4C;
+
+    stroke:#B66E4C;
+
+    transform:scale(1.05);
+
+}
+
+
+/* =====================================================
+        QUICK ADD
+===================================================== */
+
+.quick-add-btn{
+
+    position:absolute;
+
+    left:50%;
+    bottom:20px;
+
+    z-index:15;
+
+    width:calc(100% - 40px);
+
+    padding:14px 18px;
+
+    transform:translate(-50%, 22px);
+
+    opacity:0;
+
+    appearance:none;
+    -webkit-appearance:none;
+
+    border:1px solid rgba(255,255,255,.88);
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.14);
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    color:#FFFFFF;
+
+    font-family:var(--font-body);
+
+    font-size:11px;
+
+    font-weight:600;
+
+    line-height:1;
+
+    letter-spacing:2.4px;
+
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease,
+        background .25s ease,
+        color .25s ease;
+
+}
+
+.product-card:hover .quick-add-btn{
+
+    opacity:1;
+
+    transform:translate(-50%, 0);
+
+}
+
+.quick-add-btn:hover{
+
+    background:#FFFFFF;
+
+    color:#342725;
+
+}
+
+
+/* =====================================================
+        PRODUCT INFORMATION
+===================================================== */
+
+.product-info{
+
+    padding:22px 20px 24px;
+
+}
+
+
+/* =====================================================
+        PRODUCT TITLE
+===================================================== */
+
+.product-title{
+
+    margin:0 0 10px;
+
+    font-family:"Cormorant Garamond", serif;
+
+    font-size:30px;
+
+    font-weight:600;
+
+    line-height:1.15;
+
+}
+
+.product-title a{
+
+    color:#342725;
+
+    text-decoration:none;
+
+    transition:color .25s ease;
+
+}
+
+.product-title a:hover{
+
+    color:#B66E4C;
+
+}
+
+
+/* =====================================================
+        PRICE
+===================================================== */
+
+.price-box{
+
+    display:flex;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.discount-price{
+
+    font-family:var(--font-body);
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#B66E4C;
+
+}
+
+.original-price{
+
+    font-family:var(--font-body);
+
+    font-size:14px;
+
+    font-weight:400;
+
+    color:#99918C;
+
+    text-decoration:line-through;
+
+}
+
+
+/* =====================================================
+        SHINE EFFECT
+===================================================== */
+
+.product-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120%;
+    left:-40%;
+
+    width:25%;
+    height:260%;
+
+    z-index:6;
+
+    pointer-events:none;
+
+    background:rgba(255,255,255,.16);
+
+    transform:rotate(25deg);
+
+    transition:left .9s ease;
+
+}
+
+.product-card:hover::before{
+
+    left:140%;
+
+}
+
+
+/* =====================================================
+        WISHLIST FLY ANIMATION SUPPORT
+===================================================== */
+
+.product-card.fly-active{
+
+    transform:translateY(-6px);
+
+}
+
+
+/* =====================================================
+        LARGE TABLET
+===================================================== */
+
+@media (max-width:1100px){
+
+    .product-grid{
+
+        width:88%;
+
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+
+        gap:30px;
+
+    }
+
+}
+
+
+/* =====================================================
+        TABLET
+===================================================== */
+
+@media (max-width:768px){
+
+    .new-arrivals{
+
+        padding:10px 0 90px;
+
+    }
+
+    .product-grid{
+
+        width:calc(100% - 36px);
+
+        margin-top:42px;
+
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+
+        gap:20px;
+
+    }
+
+    .product-card{
+
+        border-radius:16px;
+
+    }
+
+    .product-info{
+
+        padding:17px 15px 19px;
+
+    }
+
+    .product-title{
+
+        font-size:25px;
+
+        margin-bottom:8px;
+
+    }
+
+    .discount-price{
+
+        font-size:16px;
+
+    }
+
+    .original-price{
+
+        font-size:13px;
+
+    }
+
+}
+
+
+/* =====================================================
+        MOBILE
+===================================================== */
+
+@media (max-width:576px){
+
+    .new-arrivals{
+
+        padding-bottom:75px;
+
+    }
+
+    .product-grid{
+
+        width:calc(100% - 24px);
+
+        margin-top:34px;
+
+        gap:12px;
+
+        grid-template-columns:1fr;
+
+    }
+
+    .product-card{
+
+        border-radius:12px;
+
+        box-shadow:
+            0 8px 24px rgba(0,0,0,.06);
+
+    }
+
+
+    /* --------------------------
+            BADGES
+    -------------------------- */
+
+    .new-badge,
+    .sale-badge{
+
+        top:10px;
+        left:10px;
+
+        min-height:24px;
+
+        padding:5px 9px;
+
+        font-size:8px;
+
+        letter-spacing:1px;
+
+    }
+
+
+    /* --------------------------
+            WISHLIST
+    -------------------------- */
+
+    .wishlist-btn{
+
+        top:9px;
+        right:9px;
+
+        width:32px;
+        height:32px;
+
+    }
+
+    .wishlist-btn svg{
+
+        width:16px;
+        height:16px;
+
+    }
+
+
+    /* --------------------------
+            PRODUCT INFO
+    -------------------------- */
+
+    .product-info{
+
+        padding:13px 10px 15px;
+
+    }
+
+    .product-title{
+
+        margin-bottom:7px;
+
+        font-size:20px;
+
+        line-height:1.15;
+
+    }
+
+    .price-box{
+
+        gap:6px;
+
+    }
+
+    .discount-price{
+
+        font-size:14px;
+
+    }
+
+    .original-price{
+
+        font-size:11px;
+
+    }
+
+}
+
+
+/* =====================================================
+        VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width:380px){
+
+    .product-grid{
+
+        width:calc(100% - 20px);
+
+        gap:9px;
+
+    }
+
+    .product-info{
+
+        padding:12px 8px 14px;
+
+    }
+
+    .product-title{
+
+        font-size:18px;
+
+    }
+
+    .discount-price{
+
+        font-size:13px;
+
+    }
+
+    .original-price{
+
+        font-size:10px;
+
+    }
+
+    .new-badge,
+    .sale-badge{
+
+        left:7px;
+        top:7px;
+
+        padding:4px 7px;
+
+        font-size:7px;
+
+    }
+
+    .wishlist-btn{
+
+        top:6px;
+        right:6px;
+
+        width:29px;
+        height:29px;
+
+    }
+
+}
+
+
+/* =====================================================
+        TOUCH DEVICES
+===================================================== */
+
+@media (hover:none){
+
+    .product-card:hover{
+
+        transform:none;
+
+        box-shadow:
+            0 12px 35px rgba(0,0,0,.06);
+
+    }
+
+    .product-card:hover .primary-image{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+    .product-card:hover .secondary-image{
+
+        opacity:0;
+
+        transform:none;
+
+    }
+
+    .product-card:hover .product-overlay{
+
+        opacity:0;
+
+    }
+
+    .product-card::before{
+
+        display:none;
+
+    }
+
+
+    /*
+        Phones/tablets don't have hover, so Quick Add
+        must remain visible instead of depending on hover.
+    */
+
+    .quick-add-btn{
+
+        bottom:12px;
+
+        width:calc(100% - 24px);
+
+        padding:11px 8px;
+
+        opacity:1;
+
+        transform:translate(-50%, 0);
+
+        border-radius:8px;
+
+        background:rgba(30,24,21,.58);
+
+        font-size:9px;
+
+        letter-spacing:1.5px;
+
+    }
+
+}
+
+
+/* =====================================================
+        SMALL TOUCH DEVICE QUICK ADD
+===================================================== */
+
+@media (hover:none) and (max-width:576px){
+
+    .quick-add-btn{
+
+        bottom:8px;
+
+        width:calc(100% - 16px);
+
+        padding:9px 5px;
+
+        font-size:8px;
+
+        letter-spacing:1px;
+
+    }
+
+}
+
+
+/* =====================================================
+        REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion:reduce){
+
+    .product-card,
+    .primary-image,
+    .secondary-image,
+    .product-overlay,
+    .wishlist-btn,
+    .wishlist-btn svg,
+    .quick-add-btn,
+    .product-card::before{
+
+        transition:none;
+
+    }
+
+}

@@ -1,0 +1,270 @@
+{% load static %}
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- Brand -->
+
+        <div class="footer-brand">
+
+            <h2>Shruja Couture</h2>
+
+            <p>
+
+                Timeless Indian silhouettes crafted for the modern woman.
+                Designed with elegance, confidence and everyday luxury.
+
+            </p>
+
+            <div class="footer-social">
+
+                <a
+                    href="{{ SITE_INFO.instagram }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                >
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+
+                <a
+                    href="{{ SITE_INFO.facebook }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                >
+
+                    <i class="fa-brands fa-facebook-f"></i>
+
+                </a>
+
+                <a
+                    href="{{ SITE_INFO.whatsapp }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                >
+
+                    <i class="fa-brands fa-whatsapp"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Shop -->
+
+        <!-- Shop -->
+
+<div class="footer-links">
+
+    <h4>Shop</h4>
+
+    <ul>
+
+        <li>
+
+            <a href="{% url 'products:new_arrivals' %}">
+
+                New Arrivals
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="{% url 'products:shop' %}">
+
+                Shop By Category
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+        <!-- Company -->
+
+        <div class="footer-links">
+
+            <h4>Company</h4>
+
+            <ul>
+
+                <li>
+
+                    <a href="{% url 'products:contact' %}">
+
+                        Contact Us
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'products:privacy_policy' %}">
+                        Privacy Policy
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- Customer Care -->
+
+        <div class="footer-links">
+
+            <h4>Customer Care</h4>
+
+            <ul>
+
+                <li>
+
+                    <a href="{% url 'products:shipping_policy' %}">
+                        Shipping
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'products:return_policy' %}">
+                        Return Policy
+                    </a>
+
+                </li>
+
+                <li>
+                    <a href="{% url 'products:track_order' %}">
+                        Track Order
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'products:faqs' %}">
+                        FAQs
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+            SECURE PAYMENTS
+    ========================================== -->
+
+    <div class="payment-section">
+
+        <span class="payment-title">
+
+            Trusted Checkout
+
+        </span>
+
+        <div class="payment-strip">
+
+            <div class="payment-card">
+
+                <img src="{% static 'icons/visa-10.svg' %}" alt="Visa">
+
+            </div>
+
+            <div class="payment-card">
+
+                <img src="{% static 'icons/mastercard.svg' %}" alt="Mastercard">
+
+            </div>
+
+            <div class="payment-card">
+
+                <img src="{% static 'icons/rupay.svg' %}" alt="RuPay">
+
+            </div>
+
+            <div class="payment-card">
+
+                <img src="{% static 'icons/Upi.svg' %}" alt="UPI">
+
+            </div>
+
+            <div class="payment-card">
+
+                <img src="{% static 'icons/razorpay.svg' %}" alt="Razorpay">
+
+            </div>
+
+        </div>
+
+        <p class="payment-note">
+
+            100% Secure Checkout • SSL Encrypted
+
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+            FOOTER BOTTOM
+    ========================================== -->
+
+    <div class="footer-bottom">
+
+        <div class="footer-copy">
+
+            © 2026 Shruja Couture. All Rights Reserved.
+
+        </div>
+
+        <div class="footer-crafted">
+
+            <i data-lucide="heart"></i>
+
+            Crafted with love in India
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- ==========================================
+            BACK TO TOP BUTTON
+========================================== -->
+
+<!-- ==========================================
+            BACK TO TOP
+========================================== -->
+
+<button
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Back to Top"
+>
+
+    <i data-lucide="arrow-up"></i>
+
+    <span>
+
+        Back to Top
+
+    </span>
+
+</button>

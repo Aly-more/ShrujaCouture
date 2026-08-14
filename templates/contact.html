@@ -1,0 +1,552 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Contact | Shruja Couture
+{% endblock %}
+
+{% block content %}
+
+<!-- ==========================================
+                HERO
+========================================== -->
+
+<section class="contact-hero">
+
+    <div class="contact-container">
+
+        <span class="contact-tag">
+            GET IN TOUCH
+        </span>
+
+        <h1>
+            We'd Love to Hear From You
+        </h1>
+
+        <p>
+            Whether you have a question about sizing, your order,
+            collaborations, or simply want to say hello,
+            we're always happy to hear from you.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+            CONTACT SECTION
+========================================== -->
+
+<section class="contact-section">
+
+    <div class="contact-container">
+
+        <!-- ==========================
+                CONTACT FORM
+        =========================== -->
+
+        <div class="contact-form-card">
+
+            <h2>Send us a Message</h2>
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div
+                        class="contact-success"
+                        data-message="{{ message }}"
+                        style="display:none;"
+                    ></div>
+
+                {% endfor %}
+
+            {% endif %}
+
+            <form method="POST" novalidate>
+
+                {% csrf_token %}
+
+                <div class="form-group">
+
+                    <label>Full Name</label>
+
+                    {{ form.full_name }}
+
+                    {{ form.full_name.errors }}
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Email Address</label>
+
+                    {{ form.email }}
+
+                    {{ form.email.errors }}
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Subject</label>
+
+                    {{ form.subject }}
+
+                    {{ form.subject.errors }}
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Message</label>
+
+                    {{ form.message }}
+
+                    {{ form.message.errors }}
+
+                </div>
+
+                <button type="submit" id="contact-submit-btn">
+
+                    <span class="btn-text">
+
+                        Send Message
+
+                    </span>
+
+                    <span class="btn-loader">
+
+                        <span class="loader"></span>
+
+                        Sending...
+
+                    </span>
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- ==========================
+              CONTACT DETAILS
+        =========================== -->
+<div class="contact-info">
+
+    <h2>Contact Information</h2>
+
+    <!-- EMAIL -->
+
+    <a
+        href="mailto:{{ SITE_INFO.email }}"
+        class="info-card"
+        aria-label="Send us an email"
+    >
+
+        <i data-lucide="mail"></i>
+
+        <div>
+
+            <h4>Email</h4>
+
+            <p>{{ SITE_INFO.email }}</p>
+
+            <small>Click to send an email</small>
+
+        </div>
+
+    </a>
+
+    <!-- PHONE -->
+
+    <a
+        href="tel:{{ SITE_INFO.phone|cut:' ' }}"
+        class="info-card"
+        aria-label="Call us"
+    >
+
+        <i data-lucide="phone"></i>
+
+        <div>
+
+            <h4>Phone</h4>
+
+            <p>{{ SITE_INFO.phone }}</p>
+
+            <small>Tap to call us</small>
+
+        </div>
+
+    </a>
+
+    <!-- LOCATION -->
+
+    <a
+        href="https://www.google.com/maps/search/?api=1&query={{ SITE_INFO.address|urlencode }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="info-card"
+        aria-label="Open location in Google Maps"
+    >
+
+        <i data-lucide="map-pin"></i>
+
+        <div>
+
+            <h4>Location</h4>
+
+            <p>{{ SITE_INFO.address }}</p>
+
+            <small>View on Google Maps</small>
+
+        </div>
+
+    </a>
+
+    <!-- BUSINESS HOURS -->
+
+    <div class="info-card">
+
+        <i data-lucide="clock-3"></i>
+
+        <div>
+
+            <div class="hours-header">
+
+                <h4>Business Hours</h4>
+
+                <span class="hours-badge">
+
+                    Mon – Sat
+
+                </span>
+
+            </div>
+
+            <p>10:00 AM – 7:00 PM</p>
+
+            <small>We're happy to assist you during business hours.</small>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+            FOLLOW OUR JOURNEY
+========================================== -->
+
+<section class="contact-social">
+
+    <div class="contact-container">
+
+        <span class="contact-tag">
+
+            FOLLOW OUR JOURNEY
+
+        </span>
+
+        <h2>
+
+            Stay Connected with Shruja Couture
+
+        </h2>
+
+        <p>
+
+            Discover our latest collections, behind-the-scenes moments,
+            styling inspiration, and everyday elegance through our
+            social platforms.
+
+        </p>
+
+        <div class="social-grid">
+
+            <!-- INSTAGRAM -->
+
+            <a
+                href="{{ SITE_INFO.instagram }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-card"
+                aria-label="Visit our Instagram"
+            >
+
+                <div class="social-icon">
+
+                    <i data-lucide="instagram"></i>
+
+                </div>
+
+                <h3>Instagram</h3>
+
+                <span>@shrujacouture</span>
+
+                <div class="social-arrow">
+
+                    <i data-lucide="arrow-up-right"></i>
+
+                </div>
+
+            </a>
+
+
+            <!-- FACEBOOK -->
+
+            <a
+                href="{{ SITE_INFO.facebook }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-card"
+                aria-label="Visit our Facebook"
+            >
+
+                <div class="social-icon">
+
+                    <i data-lucide="facebook"></i>
+
+                </div>
+
+                <h3>Facebook</h3>
+
+                <span>Shruja Couture</span>
+
+                <div class="social-arrow">
+
+                    <i data-lucide="arrow-up-right"></i>
+
+                </div>
+
+            </a>
+
+
+            <!-- WHATSAPP -->
+
+            <a
+                href="{{ SITE_INFO.whatsapp }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-card"
+                aria-label="Chat with us on WhatsApp"
+            >
+
+                <div class="social-icon">
+
+                    <i data-lucide="message-circle"></i>
+
+                </div>
+
+                <h3>WhatsApp</h3>
+
+                <span>Chat With Us</span>
+
+                <div class="social-arrow">
+
+                    <i data-lucide="arrow-up-right"></i>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+                FAQ SECTION
+========================================== -->
+<section class="contact-faq">
+
+    <div class="contact-container">
+
+        <span class="contact-tag">
+
+            CUSTOMER CARE
+
+        </span>
+
+        <h2>
+
+            Frequently Asked Questions
+
+        </h2>
+
+        <div class="faq-list">
+
+            <!-- Shipping -->
+
+            <div class="faq-item">
+
+                <button class="faq-question" type="button">
+
+                    <span>How long does shipping take?</span>
+
+                    <i data-lucide="plus"></i>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Every order is carefully prepared before dispatch.
+                        Orders are usually shipped within 1–2 business days,
+                        with delivery taking approximately 3–7 business days
+                        depending on your location. You'll receive tracking
+                        details as soon as your order is on its way.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Returns -->
+
+            <div class="faq-item">
+
+                <button class="faq-question" type="button">
+
+                    <span>Can I return or exchange my order?</span>
+
+                    <i data-lucide="plus"></i>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        At Shruja Couture, all sales are final and we do not
+                        offer returns or exchanges. We encourage you to review
+                        the product description and size guide carefully before
+                        placing your order. If you need help selecting the
+                        right size, feel free to contact us before purchasing.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Size -->
+
+            <div class="faq-item">
+
+                <button class="faq-question" type="button">
+
+                    <span>How do I choose the correct size?</span>
+
+                    <i data-lucide="plus"></i>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Every product includes a detailed size guide to help
+                        you find the perfect fit. If you're still unsure,
+                        simply reach out to us—we'll be happy to assist you
+                        before you place your order.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Tracking -->
+
+            <div class="faq-item">
+
+                <button class="faq-question" type="button">
+
+                    <span>How can I track my order?</span>
+
+                    <i data-lucide="plus"></i>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Once your order has been dispatched, we'll send you a
+                        confirmation email and/or WhatsApp message with your
+                        tracking details so you can follow your order every
+                        step of the way.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================================
+            CONTACT CTA
+========================================== -->
+
+<section class="contact-cta">
+
+    <div class="contact-container">
+
+        <span class="contact-tag">
+
+            SHRUJA COUTURE
+
+        </span>
+
+        <h2>
+
+            Every Conversation Begins
+            with a Hello.
+
+        </h2>
+
+        <p>
+
+            Whether you're discovering your next favorite outfit,
+            have a question about an order, or simply want styling
+            advice, we're always here to help.
+
+        </p>
+
+        <div class="cta-buttons">
+
+            <a href="{% url 'products:shop' %}" class="cta-primary">
+
+                Continue Shopping
+
+            </a>
+
+            <a href="{% url 'products:new_arrivals' %}" class="cta-secondary">
+
+                Explore New Arrivals
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

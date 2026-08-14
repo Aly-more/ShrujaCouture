@@ -1,0 +1,531 @@
+/* ==========================================
+                SHOP PAGE
+========================================== */
+
+.shop-page{
+
+    width:90%;
+    max-width:1450px;
+
+    margin:0 auto;
+
+    padding:90px 0 140px;
+
+}
+
+
+/* ==========================================
+                SHOP HEADER
+========================================== */
+
+.shop-header{
+
+    text-align:center;
+
+    max-width:750px;
+
+    margin:0 auto 55px;
+
+}
+
+.shop-tag{
+
+    display:block;
+
+    margin-bottom:16px;
+
+    font-family:var(--font-body);
+
+    font-size:12px;
+    font-weight:600;
+
+    letter-spacing:5px;
+
+    color:#B66E4C;
+
+    text-transform:uppercase;
+
+}
+
+.shop-header h1{
+
+    margin:0 0 16px;
+
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:72px;
+    font-weight:600;
+
+    line-height:1;
+
+    color:#342725;
+
+}
+
+.shop-header p{
+
+    max-width:600px;
+
+    margin:0 auto;
+
+    font-family:var(--font-body);
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    color:#7A6C65;
+
+}
+
+
+/* ==========================================
+            CATEGORY NAVIGATION
+========================================== */
+
+.shop-category-nav{
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:14px;
+
+    margin-bottom:55px;
+
+}
+
+.shop-category-nav a{
+
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-height:44px;
+
+    padding:0 25px;
+
+    border:1px solid #DDD2CC;
+
+    border-radius:50px;
+
+    background:transparent;
+
+    color:#5A4943;
+
+    text-decoration:none;
+
+    font-family:var(--font-body);
+
+    font-size:13px;
+    font-weight:500;
+
+    letter-spacing:1px;
+
+    transition:
+        background .35s ease,
+        color .35s ease,
+        border-color .35s ease,
+        transform .35s ease;
+
+}
+
+.shop-category-nav a:hover{
+
+    background:#342725;
+
+    color:#FFFFFF;
+
+    border-color:#342725;
+
+    transform:translateY(-2px);
+
+}
+
+.shop-category-nav a.active{
+
+    background:#342725;
+
+    color:#FFFFFF;
+
+    border-color:#342725;
+
+}
+
+
+/* ==========================================
+                TOOLBAR
+========================================== */
+
+.shop-toolbar{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding-bottom:20px;
+
+    margin-bottom:35px;
+
+    border-bottom:1px solid #E9E1DC;
+
+}
+
+.shop-toolbar p{
+
+    margin:0;
+
+    font-family:var(--font-body);
+
+    font-size:13px;
+
+    color:#8A7A72;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+
+}
+
+
+/* ==========================================
+                PRODUCT GRID
+========================================== */
+
+.shop-page .product-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+
+    gap:40px 24px;
+
+    align-items:start;
+
+}
+
+
+/*
+    Important:
+    Home page product CSS already controls
+    the actual product card.
+
+    We only make sure Shop cards fill
+    their own grid column.
+*/
+
+.shop-page .product-card{
+
+    width:100%;
+
+    min-width:0;
+
+}
+
+
+/* ==========================================
+                EMPTY SHOP
+========================================== */
+
+.shop-empty{
+
+    grid-column:1 / -1;
+
+    text-align:center;
+
+    padding:100px 20px;
+
+}
+
+.shop-empty span{
+
+    display:block;
+
+    margin-bottom:14px;
+
+    font-family:var(--font-body);
+
+    font-size:11px;
+
+    font-weight:600;
+
+    letter-spacing:4px;
+
+    color:#B66E4C;
+
+}
+
+.shop-empty h2{
+
+    margin:0 0 12px;
+
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:46px;
+
+    font-weight:600;
+
+    color:#342725;
+
+}
+
+.shop-empty p{
+
+    margin:0;
+
+    font-family:var(--font-body);
+
+    font-size:15px;
+
+    color:#7A6C65;
+
+}
+
+
+/* ==========================================
+                TABLET
+========================================== */
+
+@media (max-width:1100px){
+
+    .shop-page{
+
+        width:92%;
+
+        padding:75px 0 110px;
+
+    }
+
+    .shop-header h1{
+
+        font-size:62px;
+
+    }
+
+    .shop-page .product-grid{
+
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+
+        gap:34px 20px;
+
+    }
+
+}
+
+
+/* ==========================================
+            SMALL TABLET
+========================================== */
+
+@media (max-width:850px){
+
+    .shop-page{
+
+        padding-top:65px;
+
+    }
+
+    .shop-header{
+
+        margin-bottom:45px;
+
+    }
+
+    .shop-header h1{
+
+        font-size:54px;
+
+    }
+
+    .shop-header p{
+
+        font-size:15px;
+
+    }
+
+    .shop-category-nav{
+
+        margin-bottom:45px;
+
+        gap:10px;
+
+    }
+
+    .shop-category-nav a{
+
+        padding:0 20px;
+
+        font-size:12px;
+
+    }
+
+    .shop-page .product-grid{
+
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+
+        gap:30px 18px;
+
+    }
+
+}
+
+
+/* ==========================================
+                MOBILE
+========================================== */
+
+@media (max-width:600px){
+
+    .shop-page{
+
+        width:100%;
+
+        padding:55px 18px 90px;
+
+    }
+
+    .shop-header{
+
+        margin-bottom:38px;
+
+    }
+
+    .shop-tag{
+
+        margin-bottom:12px;
+
+        font-size:10px;
+
+        letter-spacing:4px;
+
+    }
+
+    .shop-header h1{
+
+        font-size:46px;
+
+        margin-bottom:12px;
+
+    }
+
+    .shop-header p{
+
+        max-width:330px;
+
+        font-size:14px;
+
+        line-height:1.7;
+
+    }
+
+
+    /* Horizontal category pills on mobile */
+
+    .shop-category-nav{
+
+        justify-content:flex-start;
+
+        flex-wrap:nowrap;
+
+        overflow-x:auto;
+
+        gap:9px;
+
+        margin-left:-18px;
+        margin-right:-18px;
+
+        padding:0 18px 12px;
+
+        scrollbar-width:none;
+
+    }
+
+    .shop-category-nav::-webkit-scrollbar{
+
+        display:none;
+
+    }
+
+    .shop-category-nav a{
+
+        flex:none;
+
+        min-height:40px;
+
+        padding:0 18px;
+
+        font-size:11px;
+
+        white-space:nowrap;
+
+    }
+
+
+    .shop-toolbar{
+
+        margin-bottom:25px;
+
+        padding-bottom:15px;
+
+    }
+
+    .shop-toolbar p{
+
+        font-size:11px;
+
+    }
+
+
+    .shop-page .product-grid{
+
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+
+        gap:24px 12px;
+
+    }
+
+}
+
+
+/* ==========================================
+            VERY SMALL MOBILE
+========================================== */
+
+@media (max-width:390px){
+
+    .shop-page{
+
+        padding-left:14px;
+        padding-right:14px;
+
+    }
+
+    .shop-header h1{
+
+        font-size:42px;
+
+    }
+
+    .shop-category-nav{
+
+        margin-left:-14px;
+        margin-right:-14px;
+
+        padding-left:14px;
+        padding-right:14px;
+
+    }
+
+    .shop-page .product-grid{
+
+        gap:22px 10px;
+
+    }
+
+}

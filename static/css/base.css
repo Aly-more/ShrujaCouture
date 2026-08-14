@@ -1,0 +1,224 @@
+/* ==========================
+   RESET
+========================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:var(--font-body);
+
+    color:var(--color-text);
+
+    background:var(--color-bg);
+
+    line-height:1.6;
+
+    overflow-x:hidden;
+
+}
+
+img{
+
+    display:block;
+
+    width:100%;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+button{
+
+    font-family:inherit;
+
+}
+
+input,
+textarea,
+select{
+
+    font-family:inherit;
+
+}
+
+/* ==========================================
+   PREMIUM TOAST
+========================================== */
+
+.luxury-toast{
+
+    position:fixed;
+
+    top:18px;
+
+    left:50%;
+
+    transform:translateX(-50%) translateY(-30px);
+
+    width:420px;
+
+    max-width:92%;
+
+    background:rgba(255,255,255,.96);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(62,43,39,.08);
+
+    border-radius:24px;
+
+    padding:24px;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s ease;
+
+    z-index:999999;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.10);
+
+}
+
+.luxury-toast.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateX(-50%) translateY(0);
+
+}
+
+.toast-check{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    background:#F4F9F4;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-shrink:0;
+
+}
+
+.toast-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.toast-heading{
+
+    flex:1;
+
+}
+
+.toast-check svg{
+
+    width:30px;
+
+    height:30px;
+
+    color:#2E8B57;
+
+}
+
+#toast-title{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:24px;
+
+    font-weight:600;
+
+    color:#342725;
+
+    margin:0 0 4px;
+
+}
+
+#toast-product{
+
+    margin:0;
+
+    font-size:15px;
+
+    color:#666;
+
+}
+
+#toast-size{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#B66E4C;
+
+    font-weight:600;
+
+    letter-spacing:.5px;
+
+}
+
+.toast-divider{
+
+    margin:20px 0 16px;
+
+    height:1px;
+
+    background:#ECE7E3;
+
+}
+
+.toast-link{
+
+    font-weight:600;
+
+    color:#342725;
+
+    transition:.3s;
+
+}
+
+.toast-link:hover{
+
+    color:#B66E4C;
+
+}
+

@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+My Orders | Shruja Couture
+{% endblock %}
+
+{% block content %}
+
+<!-- ==========================================
+        PAGE HEADER
+========================================== -->
+
+<div class="orders-header">
+
+    <span class="section-tag">
+
+        YOUR PURCHASES
+
+    </span>
+
+    <h1>
+
+        My Orders
+
+    </h1>
+
+    <p>
+
+        Track your purchases and stay updated on every order.
+
+    </p>
+
+</div>
+
+{% if not orders %}
+
+<!-- ==========================================
+        EMPTY STATE
+========================================== -->
+
+<div class="empty-orders">
+
+    <span class="empty-orders-tag">
+
+        NOTHING HERE YET
+
+    </span>
+
+    <h2>
+
+        No Orders Yet
+
+    </h2>
+
+    <p>
+
+        Looks like you haven't placed your first order.
+
+    </p>
+
+    <a
+        href="{% url 'products:shop' %}"
+        class="start-shopping-btn">
+
+        Start Shopping
+
+    </a>
+
+</div>
+
+{% else %}
+
+<!-- ==========================================
+        ORDERS CONTAINER
+========================================== -->
+
+<div id="orders-container">
+
+    {% for order in orders %}
+
+    <div class="order-card">
+
+        <!-- ==========================================
+                CARD TOP
+        ========================================== -->
+
+        <div class="order-card-top">
+
+            {% with first_item=order.items.first %}
+
+            {% if first_item %}
+
+            <div class="order-product">
+
+                <div class="order-product-image">
+
+                    <img
+                        src="{{ first_item.product.main_image.url }}"
+                        alt="{{ first_item.product.name }}"
+                    >
+
+                </div>
+
+                <div class="order-product-info">
+
+                    <span class="order-label">
+
+                        ORDER NUMBER
+
+                    </span>
+
+                    <h3>
+
+                        {{ first_item.product.name }}
+
+                    </h3>
+
+                    <h2 class="order-id">
+
+                        <a
+                            href="{% url 'orders:order_detail' order.id %}"
+                            class="orders-page-number-link">
+
+                            {{ order.order_number }}
+
+                        </a>
+
+                    </h2>
+
+                    <p>
+
+                        Size {{ first_item.variant.size }}
+
+                        <span class="product-divider">
+
+                            •
+
+                        </span>
+
+                        Colour {{ first_item.variant.color }}
+
+                        <span class="product-divider">
+
+                            •
+
+                        </span>
+
+                        Qty {{ first_item.quantity }}
+
+                    </p>
+
+                    <span class="order-date">
+
+                        Ordered on {{ order.created_at|date:"d M Y" }}
+
+                    </span>
+
+                    {% if order.items.count > 1 %}
+
+                    <span class="more-items">
+
+                        + {{ order.items.count|add:"-1" }} more item{{ order.items.count|add:"-1"|pluralize }}
+
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+            {% endwith %}
+
+            <div class="order-status-group">
+
+                <span class="badge {{ order.status|lower }}">
+
+                    {{ order.get_status_display }}
+
+                </span>
+
+                <span class="payment-badge payment-{{ order.payment_status|lower }}">
+
+                    {{ order.get_payment_status_display }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+                CARD BODY
+        ========================================== -->
+
+        <div class="order-card-body">
+
+            <div class="order-summary">
+
+                <div class="order-meta">
+
+                    {{ order.items.count }} item{{ order.items.count|pluralize }}
+
+                </div>
+
+                <div class="order-total">
+
+                    <span>
+
+                        Total
+
+                    </span>
+
+                    <strong>
+
+                        ₹{{ order.total }}
+
+                    </strong>
+
+                </div>
+
+                <a
+                    href="{% url 'orders:order_detail' order.id %}"
+                    class="view-order-btn">
+
+                    View Details →
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+{% endblock %}

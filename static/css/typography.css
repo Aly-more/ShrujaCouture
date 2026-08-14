@@ -1,0 +1,62 @@
+/* ==========================
+   TYPOGRAPHY
+========================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    font-family:var(--font-heading);
+
+    font-weight:600;
+
+    line-height:1.1;
+
+    letter-spacing:.3px;
+
+}
+
+h1{
+
+    font-size:clamp(54px,7vw,86px);
+
+}
+
+h2{
+
+    font-size:clamp(40px,5vw,58px);
+
+}
+
+h3{
+
+    font-size:30px;
+
+}
+
+p{
+
+    font-size:16px;
+
+    color:var(--color-text-light);
+
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:70px;
+
+}
+
+.section-title p{
+
+    max-width:600px;
+
+    margin:auto;
+
+}

@@ -1,0 +1,468 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ product.name }} | Shruja Couture
+{% endblock %}
+
+{% block content %}
+
+<section class="product-detail">
+
+    <!-- ==========================
+            PRODUCT GALLERY
+    =========================== -->
+
+    <div class="product-gallery">
+
+        <div class="thumbnail-gallery">
+
+            <!-- Main Image -->
+
+            <img
+                src="{{ product.main_image.url }}"
+                class="thumbnail active"
+                alt="{{ product.name }}"
+            >
+
+            <!-- Hover Image -->
+
+            {% if product.hover_image %}
+
+            <img
+                src="{{ product.hover_image.url }}"
+                class="thumbnail"
+                alt="{{ product.name }}"
+            >
+
+            {% endif %}
+
+            <!-- Gallery Images -->
+
+            {% for image in product.images.all %}
+
+            <img
+                src="{{ image.image.url }}"
+                class="thumbnail"
+                alt="{{ product.name }}"
+            >
+
+            {% endfor %}
+
+        </div>
+
+        <div class="main-image">
+
+            <img
+                id="mainProductImage"
+                src="{{ product.main_image.url }}"
+                alt="{{ product.name }}"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+            PRODUCT DETAILS
+    =========================== -->
+
+    <div class="product-details">
+
+        <span class="brand-name">
+
+            {{ product.brand }}
+
+        </span>
+
+        <h1>
+
+            {{ product.name }}
+
+        </h1>
+
+        <!-- Product Meta -->
+
+        <div class="product-meta">
+
+            <span>
+
+                Category:
+                <strong>{{ product.category.name }}</strong>
+
+            </span>
+
+            {% if variants %}
+
+            <span>
+
+                SKU:
+                <strong>{{ variants.0.sku }}</strong>
+
+            </span>
+
+            {% endif %}
+
+        </div>
+
+        <!-- Price -->
+
+        {% if product.discount_price %}
+
+        <div class="price-box">
+
+            <span class="discount-price">
+
+                ₹{{ product.discount_price }}
+
+            </span>
+
+            <span class="original-price">
+
+                ₹{{ product.price }}
+
+            </span>
+
+        </div>
+
+        {% else %}
+
+        <div class="price-box">
+
+            <span class="discount-price">
+
+                ₹{{ product.price }}
+
+            </span>
+
+        </div>
+
+        {% endif %}
+
+        <!-- Sizes -->
+
+<div class="size-section">
+
+    <h4>Select Size</h4>
+
+    <div class="size-options">
+
+        {% for variant in variants %}
+
+        <div class="size-item">
+
+            <button
+                type="button"
+                class="size-btn"
+                data-stock="{{ variant.remaining_stock }}"
+                data-size="{{ variant.size }}"
+            >
+
+                {{ variant.size }}
+
+            </button>
+
+            <small class="size-stock"></small>
+
+        </div>
+
+        {% empty %}
+
+        <span class="out-of-stock">
+
+            Out of Stock
+
+        </span>
+
+        {% endfor %}
+
+    </div>
+
+</div>        
+
+<!-- Stock Status -->
+
+<div class="stock-status">
+
+    {% if variants %}
+
+        <i
+            id="stockIcon"
+            data-lucide="badge-check">
+        </i>
+
+        <span id="stockText">
+
+            Select a size
+
+        </span>
+
+    {% else %}
+
+        <i
+            id="stockIcon"
+            data-lucide="circle-x">
+        </i>
+
+        <span id="stockText">
+
+            Out of Stock
+
+        </span>
+
+    {% endif %}
+
+</div>
+
+        <!-- ==========================
+                ADD TO CART
+        =========================== -->
+
+        <form
+            id="addToCartForm"
+            data-product-id="{{ product.id }}"
+            action="{% url 'add_to_cart' product.id %}"
+            method="POST"
+        >
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                id="selected-size"
+                name="selected_size"
+            >
+
+            <!-- Quantity -->
+
+            <div class="quantity-section">
+
+                <h4>Quantity</h4>
+
+                <div class="quantity-box">
+
+                    <button
+                        type="button"
+                        id="minusQty"
+                    >
+
+                        −
+
+                    </button>
+
+                    <input
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        value="1"
+                        min="1"
+                    >
+
+                    <button
+                        type="button"
+                        id="plusQty"
+                    >
+
+                        +
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="product-actions">
+
+                <button
+                    id="addToCartBtn"
+                    type="submit"
+                    class="shop-btn"
+                >
+
+                    Add to Bag
+
+                </button>
+
+                <button
+                    type="button"
+                    class="wishlist-detail-btn {% if product.id in wishlist_ids %}active{% endif %}"
+                    data-product="{{ product.id }}"
+                    aria-label="Wishlist"
+                >
+
+                    <i data-lucide="heart"></i>
+
+                </button>
+
+            </div>
+
+        </form>
+
+        <!-- Delivery Information -->
+
+        <div class="delivery-info">
+
+            <div class="delivery-item">
+
+                <i data-lucide="truck"></i>
+
+                <span>
+
+                    Free Shipping Across India
+
+                </span>
+
+            </div>
+
+            <div class="delivery-item">
+
+                <i data-lucide="refresh-ccw"></i>
+
+                <span>
+
+                    No Returns/Exchange
+
+                </span>
+
+            </div>
+
+            <div class="delivery-item">
+
+                <i data-lucide="shield-check"></i>
+
+                <span>
+
+                    100% Secure Payments
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+                PRODUCT ACCORDION
+        =========================================== -->
+
+        <div class="product-accordion">
+
+            <div class="accordion-item">
+
+                <button class="accordion-header">
+
+                    Description
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="accordion-content">
+
+                    <p>
+
+                        {{ product.description }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="accordion-item">
+
+                <button class="accordion-header">
+
+                    Fabric & Care
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="accordion-content">
+
+                    <ul>
+
+                        <li>Premium Cotton Blend</li>
+
+                        <li>Hand Wash Recommended</li>
+
+                        <li>Steam Iron Only</li>
+
+                        <li>Do Not Bleach</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="accordion-item">
+
+                <button class="accordion-header">
+
+                    Shipping & Returns
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="accordion-content">
+
+                    <ul>
+
+                        <li>Free Shipping Across India</li>
+
+                        <li>Dispatch within 1 - 2 Days </li>
+
+                        <li>No Returns or Exchange</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="accordion-item">
+
+                <button class="accordion-header">
+
+                    Size Guide
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="accordion-content">
+
+                    <p>
+
+                        Choose your regular size.
+
+                        If you're between sizes, we recommend sizing up for a relaxed fit.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'js/product-detail.js' %}"></script>
+
+<script>
+
+    lucide.createIcons();
+
+</script>
+
+{% endblock %}

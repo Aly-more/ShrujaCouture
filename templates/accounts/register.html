@@ -1,0 +1,560 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Create Account | Shruja Couture
+{% endblock %}
+
+
+{% block content %}
+
+<section class="auth-page">
+
+    <!-- ==========================================
+            AUTH CONTAINER
+    =========================================== -->
+
+    <div class="auth-container">
+
+
+        <!-- ==========================================
+                LEFT BRAND PANEL
+        =========================================== -->
+
+        <div class="auth-brand-panel">
+
+            <div class="auth-brand-content">
+
+                <span class="auth-eyebrow">
+                    SHRUJA COUTURE
+                </span>
+
+                <h1>
+                    Join the
+                    <br>
+                    Shruja World
+                </h1>
+
+                <p>
+                    Create your account to save your favourite pieces,
+                    manage your orders and enjoy a more personal
+                    Shruja Couture experience.
+                </p>
+
+                <div class="auth-brand-line"></div>
+
+                <span class="auth-brand-note">
+                    MODERN INDIAN LUXURY
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+                RIGHT FORM PANEL
+        =========================================== -->
+
+        <div class="auth-form-panel">
+
+            <div class="auth-form-wrapper">
+
+
+                <!-- ==========================================
+                        HEADER
+                =========================================== -->
+
+                <div class="auth-header">
+
+                    <span class="auth-tag">
+                        YOUR ACCOUNT
+                    </span>
+
+                    <h2>
+                        Create Account
+                    </h2>
+
+                    <p>
+                        Join Shruja Couture and make every
+                        shopping experience beautifully yours.
+                    </p>
+
+                </div>
+
+
+                <!-- ==========================================
+                        DJANGO MESSAGES
+                =========================================== -->
+
+                {% if messages %}
+
+                    <div class="auth-messages">
+
+                        {% for message in messages %}
+
+                            <div class="auth-message {{ message.tags }}">
+                                {{ message }}
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- ==========================================
+                        REGISTER FORM
+                =========================================== -->
+
+                <form
+                    method="POST"
+                    action="{% url 'register' %}"
+                    class="auth-form"
+                >
+
+                    {% csrf_token %}
+
+
+                    <!-- ==========================================
+                            NAME ROW
+                    =========================================== -->
+
+                    <div class="auth-name-grid">
+
+
+                        <!-- FIRST NAME -->
+
+                        <div class="auth-field">
+
+                            <label for="first_name">
+                                First Name
+                            </label>
+
+                            <div class="auth-input-wrapper">
+
+                                <i data-lucide="user"></i>
+
+                                <input
+                                    type="text"
+                                    id="first_name"
+                                    name="first_name"
+                                    placeholder="First name"
+                                    value="{{ form_data.first_name|default:'' }}"
+                                    autocomplete="given-name"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- LAST NAME -->
+
+                        <div class="auth-field">
+
+                            <label for="last_name">
+                                Last Name
+                            </label>
+
+                            <div class="auth-input-wrapper">
+
+                                <i data-lucide="user"></i>
+
+                                <input
+                                    type="text"
+                                    id="last_name"
+                                    name="last_name"
+                                    placeholder="Last name"
+                                    value="{{ form_data.last_name|default:'' }}"
+                                    autocomplete="family-name"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==========================================
+                            EMAIL
+                    =========================================== -->
+
+                    <div class="auth-field">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="auth-input-wrapper">
+
+                            <i data-lucide="mail"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                value="{{ form_data.email|default:'' }}"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==========================================
+                            PHONE
+                    =========================================== -->
+
+                    <div class="auth-field">
+
+                        <label for="phone_number">
+
+                            Phone Number
+
+                            <span class="optional-label">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <div class="auth-input-wrapper">
+
+                            <i data-lucide="phone"></i>
+
+                            <input
+                                type="tel"
+                                id="phone_number"
+                                name="phone_number"
+                                placeholder="Enter your phone number"
+                                value="{{ form_data.phone_number|default:'' }}"
+                                autocomplete="tel"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==========================================
+                            PASSWORD
+                    =========================================== -->
+
+                    <div class="auth-field">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="auth-input-wrapper">
+
+                            <i data-lucide="lock-keyhole"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="password"
+                                aria-label="Show password"
+                            >
+
+                                <i data-lucide="eye"></i>
+
+                            </button>
+
+                        </div>
+
+                        <span class="auth-field-hint">
+                            Minimum 8 characters
+                        </span>
+
+                    </div>
+
+
+                    <!-- ==========================================
+                            CONFIRM PASSWORD
+                    =========================================== -->
+
+                    <div class="auth-field">
+
+                        <label for="confirm_password">
+                            Confirm Password
+                        </label>
+
+                        <div class="auth-input-wrapper">
+
+                            <i data-lucide="lock-keyhole"></i>
+
+                            <input
+                                type="password"
+                                id="confirm_password"
+                                name="confirm_password"
+                                placeholder="Confirm your password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="confirm_password"
+                                aria-label="Show password"
+                            >
+
+                                <i data-lucide="eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==========================================
+                            CREATE ACCOUNT BUTTON
+                    =========================================== -->
+
+                    <button
+                        type="submit"
+                        class="auth-submit"
+                    >
+
+                        <span>
+                            Create Account
+                        </span>
+
+                        <i data-lucide="arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+
+                <!-- ==========================================
+                        DIVIDER
+                =========================================== -->
+
+                <div class="auth-divider">
+
+                    <span>
+                        ALREADY WITH SHRUJA?
+                    </span>
+
+                </div>
+
+
+                <!-- ==========================================
+                        LOGIN AREA
+                =========================================== -->
+
+                <div class="auth-register">
+
+                    <p>
+                        Already have an account?
+                        Sign in to access your saved pieces,
+                        orders and account details.
+                    </p>
+
+                    <a
+                        href="{% url 'login' %}"
+                        class="auth-secondary-btn"
+                    >
+
+                        Sign In
+
+                    </a>
+
+                </div>
+
+
+                <!-- ==========================================
+                        SECURITY NOTE
+                =========================================== -->
+
+                <div class="auth-security">
+
+                    <i data-lucide="shield-check"></i>
+
+                    <span>
+                        Your information is securely protected
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* ==========================================
+            PASSWORD VISIBILITY
+    =========================================== */
+
+    const passwordButtons =
+        document.querySelectorAll(".password-toggle");
+
+
+    passwordButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const targetId =
+                button.getAttribute("data-target");
+
+            const input =
+                document.getElementById(targetId);
+
+
+            if (!input) return;
+
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+                button.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+                button.innerHTML =
+                    '<i data-lucide="eye-off"></i>';
+
+            }
+
+            else {
+
+                input.type = "password";
+
+                button.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+
+                button.innerHTML =
+                    '<i data-lucide="eye"></i>';
+
+            }
+
+
+            if (window.lucide) {
+
+                lucide.createIcons();
+
+            }
+
+        });
+
+    });
+
+
+    /* ==========================================
+            PASSWORD MATCH CHECK
+    =========================================== */
+
+    const password =
+        document.getElementById("password");
+
+    const confirmPassword =
+        document.getElementById("confirm_password");
+
+
+    if (password && confirmPassword) {
+
+        confirmPassword.addEventListener(
+            "input",
+            function () {
+
+                if (
+                    confirmPassword.value &&
+                    password.value !== confirmPassword.value
+                ) {
+
+                    confirmPassword.setCustomValidity(
+                        "Passwords do not match."
+                    );
+
+                }
+
+                else {
+
+                    confirmPassword.setCustomValidity("");
+
+                }
+
+            }
+        );
+
+
+        password.addEventListener(
+            "input",
+            function () {
+
+                if (
+                    confirmPassword.value &&
+                    password.value !== confirmPassword.value
+                ) {
+
+                    confirmPassword.setCustomValidity(
+                        "Passwords do not match."
+                    );
+
+                }
+
+                else {
+
+                    confirmPassword.setCustomValidity("");
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+            LUCIDE ICONS
+    =========================================== */
+
+    if (window.lucide) {
+
+        lucide.createIcons();
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

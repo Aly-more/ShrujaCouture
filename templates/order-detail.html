@@ -1,0 +1,559 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Order Details | Shruja Couture
+{% endblock %}
+
+{% block content %}
+
+<section class="order-detail">
+
+    <div class="container">
+
+        <!-- ==========================================
+                PAGE HEADER
+        ========================================== -->
+
+        <div class="order-detail-header">
+
+            <span class="section-tag">
+
+                YOUR ORDER
+
+            </span>
+
+            <h1>
+
+                Order Details
+
+            </h1>
+
+            <p>
+
+                View your order summary, shipping information, payment status,
+                and track your order progress.
+
+            </p>
+
+        </div>
+
+
+        {% if order %}
+
+        <div class="order-box">
+
+            <!-- ==========================================
+                    ORDER HEADER
+            ========================================== -->
+<div class="order-header">
+
+    <div class="order-header-left">
+
+        <span class="order-detail-label">
+
+            ORDER NUMBER
+
+        </span>
+
+        <h2>
+
+            {{ order.order_number }}
+
+        </h2>
+
+        <p>
+
+            Placed on {{ order.created_at|date:"d F Y" }}
+
+        </p>
+
+    </div>
+
+    <div class="order-header-right">
+
+        <!-- ==========================================
+                ORDER STATUS
+        ========================================== -->
+
+        <div class="status-group">
+
+            <span class="status-label">
+
+                Order Status
+
+            </span>
+
+            <span
+                id="orderStatusBadge"
+                class="badge status-badge status-{{ order.status|lower }}">
+
+                {{ order.get_status_display }}
+
+            </span>
+
+        </div>
+
+        <!-- ==========================================
+                PAYMENT STATUS
+        ========================================== -->
+
+        <div class="status-group">
+
+            <span class="status-label">
+
+                Payment
+
+            </span>
+
+            <span
+                class="payment-badge payment-{{ order.payment_status|lower }}">
+
+                {{ order.get_payment_status_display }}
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% if order.status != "Cancelled" %}
+
+<div
+    id="orderProgressSection"
+    class="order-section progress-section">
+
+    <div class="section-heading">
+
+        <h3>
+
+            Order Progress
+
+        </h3>
+
+    </div>
+
+    <div class="timeline">
+
+        {% for step in status_steps %}
+
+        <div class="timeline-step
+            {% if forloop.counter0 < current_index %}
+                completed
+            {% elif forloop.counter0 == current_index %}
+                active
+            {% endif %}
+        ">
+
+            <div class="timeline-icon">
+
+                ✓
+
+            </div>
+
+            <div class="timeline-content">
+
+                <h4>
+
+                    {{ step }}
+
+                </h4>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% else %}
+
+<div class="cancelled-order-box">
+
+    <div class="cancelled-icon">
+
+        ✕
+
+    </div>
+
+    <h3>
+
+        Order Cancelled
+
+    </h3>
+
+    <p>
+
+        This order has been cancelled.
+
+    </p>
+
+</div>
+
+{% endif %}
+
+
+<!-- ==========================================
+        ORDER ITEMS
+========================================== -->
+
+<div class="order-section items-section">
+
+    <div class="section-heading">
+
+        <h3>
+
+            Ordered Items
+
+        </h3>
+
+    </div>
+
+    <div class="order-items">
+
+        {% for item in order.items.all %}
+
+        <div class="order-item">
+
+            <div class="order-item-image">
+
+                <img
+                    src="{{ item.product.main_image.url }}"
+                    alt="{{ item.product.name }}"
+                >
+
+            </div>
+
+            <div class="item-info">
+
+                <h3>
+
+                    {{ item.product.name }}
+
+                </h3>
+
+                <div class="item-attributes">
+
+                    <span>
+
+                        Size {{ item.variant.size }}
+
+                    </span>
+
+                    <span class="item-divider">
+
+                        •
+
+                    </span>
+
+                    <span>
+
+                        Colour {{ item.variant.color }}
+
+                    </span>
+
+                    <span class="item-divider">
+
+                        •
+
+                    </span>
+
+                    <span>
+
+                        Qty {{ item.quantity }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="item-price">
+
+                ₹{{ item.price }}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+            <!-- ==========================================
+                    PRICE SUMMARY
+            ========================================== -->
+
+            <div class="order-section summary-section">
+
+                <div class="summary-wrapper">
+
+                    <div class="summary">
+
+                        <div class="summary-row">
+
+                            <span>
+
+                                Subtotal
+
+                            </span>
+
+                            <strong>
+
+                                ₹{{ order.subtotal }}
+
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-row">
+
+                            <span>
+
+                                Shipping
+
+                            </span>
+
+                            <strong>
+
+                                {% if order.shipping_charge == 0 %}
+                                    FREE
+                                {% else %}
+                                    ₹{{ order.shipping_charge }}
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-row total-row">
+
+                            <strong>
+
+                                Total
+
+                            </strong>
+
+                            <strong>
+
+                                ₹{{ order.total }}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    {% if order.status == "Pending" or order.status == "Confirmed" %}
+
+                    <div id="orderActions" class="order-actions">
+
+                        <button
+                            class="cancel-btn"
+                            data-order-id="{{ order.id }}">
+
+                            Cancel Order
+
+                        </button>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================================
+                    DELIVERY ADDRESS
+            ========================================== -->
+
+            <div class="order-section delivery-section">
+
+                <div class="section-heading">
+
+                    <h3>
+
+                        Delivery Address
+
+                    </h3>
+
+                </div>
+
+                <div class="delivery-details">
+
+                    <div class="delivery-icon">
+
+                        📍
+
+                    </div>
+
+                    <div class="delivery-address">
+
+                        <h4>
+
+                            {{ order.customer_name }}
+
+                        </h4>
+
+                        <p>
+
+                            {{ order.address }}
+
+                        </p>
+
+                        <p>
+
+                            {{ order.city }},
+                            {{ order.state }}
+                            -
+                            {{ order.pincode }}
+
+                        </p>
+
+                        <p class="delivery-phone">
+
+                            {{ order.phone }}
+
+                        </p>
+
+                        {% if order.estimated_delivery %}
+
+                        <p class="estimated-delivery">
+
+                            Estimated Delivery:
+                            {{ order.estimated_delivery|date:"d M Y" }}
+
+                        </p>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+        CANCEL ORDER MODAL
+========================================== -->
+
+<div class="modal-overlay" id="cancelModal">
+
+    <div class="cancel-modal">
+
+        <button
+            class="modal-close"
+            id="closeCancelModal">
+
+            ×
+
+        </button>
+
+        <div class="modal-icon">
+
+            ✕
+
+        </div>
+
+        <h2>
+
+            Cancel this order?
+
+        </h2>
+
+        <p>
+
+            This action cannot be undone.
+
+            <br><br>
+
+            The items will immediately become available for purchase again.
+
+        </p>
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-secondary-btn"
+                id="keepOrderBtn">
+
+                Keep Order
+
+            </button>
+
+            <button
+                class="modal-danger-btn"
+                id="confirmCancelBtn">
+
+                Yes, Cancel
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+        TOAST
+========================================== -->
+
+<div class="toast" id="toast">
+
+    <div class="toast-icon">
+
+        ✓
+
+    </div>
+
+    <div class="toast-content">
+
+        <h4 id="toastTitle">
+
+            Success
+
+        </h4>
+
+        <p id="toastMessage">
+
+            Action completed successfully.
+
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+    const CANCEL_ORDER_API = "/api/orders/{{ order.id }}/cancel/";
+
+    const CSRF_TOKEN = "{{ csrf_token }}";
+
+</script>
+
+<script src="{% static 'js/order-detail.js' %}?v=2"></script>
+
+{% endblock %}
+

@@ -1,0 +1,480 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Shopping Bag | Shruja Couture
+{% endblock %}
+
+
+{% block content %}
+
+<section class="cart-page">
+
+    <!-- ==========================================
+                    HEADER
+    =========================================== -->
+
+    <header class="cart-header">
+
+        <span class="cart-tag">
+
+            SHOPPING BAG
+
+        </span>
+
+        <h1>
+
+            Your Shopping Bag
+
+        </h1>
+
+        <p>
+
+            Your selections are reserved while you browse.
+
+        </p>
+
+    </header>
+
+    {% if cart %}
+
+    <!-- ==========================================
+                    MAIN LAYOUT
+    =========================================== -->
+
+    <div class="cart-layout">
+
+        <!-- LEFT SIDE -->
+<!-- ==========================================
+            PRODUCTS
+========================================== -->
+
+<section class="cart-products">
+
+    {% for item_key, item in cart.items %}
+
+    <article
+        class="cart-product"
+        data-item-key="{{ item_key }}"
+    >
+
+        <!-- ==========================
+                PRODUCT IMAGE
+        ========================== -->
+
+        <div class="cart-product-image">
+
+            <a href="{% url 'products:product_detail' item.slug %}">
+
+                <img
+                    src="{{ item.image }}"
+                    alt="{{ item.name }}"
+                >
+
+            </a>
+
+        </div>
+
+        <!-- ==========================
+                PRODUCT INFO
+        ========================== -->
+
+        <div class="product-info">
+
+            <!-- TOP -->
+
+            <div class="product-top">
+
+                <div class="product-heading">
+
+                    <h2 class="cart-product-name">
+
+                        <a href=" item.slug %}">
+
+                            {{ item.name }}
+
+                        </a>
+
+                    </h2>
+
+                    <p class="product-subtitle">
+
+                        Modern Indian Luxury
+
+                    </p>
+
+                </div>
+
+                <div class="product-price">
+
+                    ₹{{ item.price }}
+
+                </div>
+
+            </div>
+
+            <!-- DIVIDER -->
+
+            <div class="product-divider"></div>
+
+            <!-- PRODUCT OPTIONS -->
+
+            <div class="product-options">
+
+                <!-- ==========================================
+                        SIZE
+                ========================================== -->
+
+                <div class="option">
+
+                    <span>
+
+                        Size
+
+                    </span>
+
+                    <div
+                        class="cart-size-dropdown"
+                        data-item-key="{{ item_key }}"
+                        data-product-id="{{ item.product_id }}"
+                    >
+
+                        <!-- Trigger -->
+
+                        <button
+                            type="button"
+                            class="cart-size-trigger"
+                        >
+
+                            <span class="selected-size">
+
+                                {{ item.size }}
+
+                            </span>
+
+                            <i
+                                data-lucide="chevron-down"
+                                class="dropdown-arrow"
+                            ></i>
+
+                        </button>
+
+                        <!-- Dropdown -->
+
+                        <div class="cart-size-menu">
+
+                            <!-- Filled dynamically -->
+
+                        </div>
+
+                    </div>
+
+                    <!-- Stock Status -->
+
+                    <div class="cart-size-status">
+
+                    </div>
+
+                </div>
+
+                <!-- ==========================================
+                        QUANTITY
+                ========================================== -->
+
+                <div class="option">
+
+                    <span>
+
+                        Quantity
+
+                    </span>
+
+                    <div class="quantity-selector">
+
+                        <button
+                            type="button"
+                            class="qty-btn decrease-btn"
+                            data-item-key="{{ item_key }}"
+                        >
+
+                            −
+
+                        </button>
+
+                        <strong
+                            class="quantity-value"
+                            data-item-key="{{ item_key }}"
+                        >
+
+                            {{ item.quantity }}
+
+                        </strong>
+
+                        <button
+                            type="button"
+                            class="qty-btn increase-btn"
+                            data-item-key="{{ item_key }}"
+                        >
+
+                            +
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ==========================================
+                    ACTIONS
+            ========================================== -->
+
+            <div class="product-actions">
+
+                <button
+                    type="button"
+                    class="cart-wishlist-btn"
+                    data-product="{{ item.product_id }}"
+                    data-item-key="{{ item_key }}"
+                    aria-label="Move to Wishlist"
+                >
+
+                    <i data-lucide="heart"></i>
+
+                </button>
+
+                <div class="action-divider"></div>
+
+                <button
+                    type="button"
+                    class="cart-remove-btn"
+                    data-item-key="{{ item_key }}"
+                    aria-label="Remove"
+                >
+
+                    <i data-lucide="trash-2"></i>
+
+                </button>
+
+                <div class="action-divider"></div>
+
+                <button
+                    type="button"
+                    class="cart-share-btn"
+                    aria-label="Share Product"
+                >
+
+                    <i data-lucide="share-2"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </article>
+
+    {% endfor %}
+
+</section>
+
+        <!-- ==========================================
+            ORDER SUMMARY
+========================================== -->
+
+            <aside class="cart-summary">
+
+                <span class="summary-tag">
+
+                    YOUR ORDER
+
+                </span>
+
+                <h2>
+
+                    Estimated Total
+
+                </h2>
+
+                <!-- SUBTOTAL -->
+
+                <div class="summary-row">
+
+                    <span>
+
+                        Subtotal
+
+                    </span>
+
+                    <strong id="cart-subtotal">
+
+                        ₹{{ subtotal }}
+
+                    </strong>
+
+                </div>
+
+                <!-- SHIPPING -->
+
+                <div class="summary-row">
+
+                    <span>
+
+                        Shipping
+
+                    </span>
+
+                    <strong id="cart-shipping">
+
+                        {% if shipping == 0 %}
+
+                            Complimentary
+
+                        {% else %}
+
+                            ₹{{ shipping }}
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+                <!-- DIVIDER -->
+
+                <div class="summary-divider"></div>
+
+                <!-- TOTAL -->
+
+                <div class="summary-row total">
+
+                    <span>
+
+                        Total
+
+                    </span>
+
+                    <strong id="cart-total">
+
+                        ₹{{ total }}
+
+                    </strong>
+                </div>
+
+                <!-- CHECKOUT -->
+
+                <a
+                    href="{% url 'checkout' %}"
+                    class="checkout-btn"
+                >
+
+                    Secure Checkout
+
+                </a>
+
+                <!-- BENEFITS -->
+
+                <div class="summary-benefits">
+
+                    <div class="benefit">
+
+                        <i data-lucide="shield-check"></i>
+
+                        <span>
+
+                            Secure Payments
+
+                        </span>
+
+                    </div>
+
+                    <div class="benefit">
+
+                        <i data-lucide="truck"></i>
+
+                        <span>
+
+                            Complimentary Delivery
+
+                        </span>
+
+                    </div>
+
+                    <div class="benefit">
+
+                        <i data-lucide="rotate-ccw"></i>
+
+                        <span>
+
+                            No Return/Exchange
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+    </div>
+
+    {% else %}
+
+    <!-- ==========================================
+            EMPTY CART
+========================================== -->
+
+            <section class="empty-cart">
+
+                <div class="empty-cart-icon">
+
+                    <i data-lucide="shopping-bag"></i>
+
+                </div>
+
+                <span class="empty-tag">
+
+                    NOTHING HERE YET
+
+                </span>
+
+                <h2>
+
+                    Your Shopping Bag is Empty
+
+                </h2>
+
+                <p>
+
+                    Discover timeless pieces thoughtfully designed for the modern woman.
+
+                </p>
+
+                <a
+                    href="{% url 'products:home' %}"
+                    class="continue-shopping-btn"
+                >
+
+                    Continue Shopping
+
+                </a>
+
+            </section>
+    
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'js/cart.js' %}"></script>
+
+
+
+
+
+{% endblock %}

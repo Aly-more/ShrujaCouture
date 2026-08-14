@@ -1,0 +1,1640 @@
+/* ==========================================
+                FOOTER
+========================================== */
+
+.footer{
+
+    position:relative;
+
+    background:#2C211D;
+
+    color:#ffffff;
+
+    padding:90px 8% 0;
+
+    overflow:hidden;
+
+}
+
+
+/* ==========================================
+        TOP GLOW LINE
+========================================== */
+
+.footer::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:100%;
+
+    height:1px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(201,138,102,.9),
+        transparent
+    );
+
+    animation:footerGlow 6s linear infinite;
+
+}
+
+@keyframes footerGlow{
+
+    from{
+        left:-100%;
+    }
+
+    to{
+        left:100%;
+    }
+
+}
+
+
+/* ==========================================
+            FOOTER CONTAINER
+========================================== */
+
+.footer-container{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr 1fr 2fr;
+
+    gap:70px;
+
+    padding-bottom:70px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+
+/* ==========================================
+                BRAND
+========================================== */
+
+.footer-brand h2{
+
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:46px;
+
+    font-weight:600;
+
+    margin-bottom:22px;
+
+    color:#ffffff;
+
+}
+
+.footer-brand p{
+
+    color:#D2CBC6;
+
+    line-height:1.9;
+
+    font-size:15px;
+
+    max-width:340px;
+
+}
+
+
+/* ==========================================
+            SOCIAL ICONS
+========================================== */
+
+.footer-social{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:32px;
+
+}
+
+.footer-social a{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-decoration:none;
+
+    color:#ffffff;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    transition:
+        background .35s ease,
+        border-color .35s ease,
+        transform .35s ease;
+
+}
+
+.footer-social a:hover{
+
+    background:#B66E4C;
+
+    border-color:#B66E4C;
+
+    transform:translateY(-4px);
+
+}
+
+
+/* ==========================================
+                LINKS
+========================================== */
+
+.footer-links h4{
+
+    color:#C98A66;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    margin-bottom:28px;
+
+}
+
+.footer-links ul{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.footer-links li{
+
+    margin-bottom:16px;
+
+    transition:transform .35s ease;
+
+}
+
+.footer-links a{
+
+    position:relative;
+
+    text-decoration:none;
+
+    color:#D5CDC8;
+
+    transition:color .35s ease;
+
+}
+
+.footer-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-5px;
+
+    width:0;
+
+    height:1px;
+
+    background:#B66E4C;
+
+    transition:width .35s ease;
+
+}
+
+.footer-links a:hover{
+
+    color:#ffffff;
+
+}
+
+.footer-links a:hover::after{
+
+    width:100%;
+
+}
+
+
+/* ==========================================
+                NEWSLETTER
+========================================== */
+
+.footer-newsletter h4{
+
+    color:#C98A66;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    margin-bottom:20px;
+
+}
+
+.footer-newsletter p{
+
+    color:#D5CDC8;
+
+    line-height:1.8;
+
+    margin-bottom:28px;
+
+}
+
+.footer-newsletter form{
+
+    display:flex;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:60px;
+
+    overflow:hidden;
+
+}
+
+.footer-newsletter input{
+
+    flex:1;
+
+    min-width:0;
+
+    padding:17px 22px;
+
+    background:transparent;
+
+    color:#ffffff;
+
+    border:none;
+
+    outline:none;
+
+    transition:
+        border-color .35s ease,
+        background .35s ease;
+
+}
+
+.footer-newsletter input::placeholder{
+
+    color:#A7A19C;
+
+}
+
+.footer-newsletter input:focus{
+
+    background:rgba(255,255,255,.03);
+
+}
+
+.footer-newsletter button{
+
+    flex-shrink:0;
+
+    padding:0 30px;
+
+    border:none;
+
+    cursor:pointer;
+
+    background:#B66E4C;
+
+    color:#ffffff;
+
+    transition:background .35s ease;
+
+}
+
+.footer-newsletter button:hover{
+
+    background:#9B5A3F;
+
+}
+
+
+/* ==========================================
+            PAYMENT SECTION
+========================================== */
+
+.payment-section{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    text-align:center;
+
+    padding:55px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.payment-title{
+
+    display:block;
+
+    margin-bottom:32px;
+
+    color:#C98A66;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    letter-spacing:6px;
+
+    text-transform:uppercase;
+
+}
+
+.payment-strip{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:22px;
+
+}
+
+
+/* ==========================================
+            PAYMENT CARDS
+========================================== */
+
+.payment-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    width:150px;
+
+    height:78px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#3E2F2A;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:18px;
+
+    transition:
+        transform .35s ease,
+        background .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.payment-card:hover{
+
+    transform:translateY(-8px);
+
+    background:#4A3832;
+
+    border-color:#C98A66;
+
+    box-shadow:0 12px 30px rgba(201,138,102,.15);
+
+}
+
+.payment-card img{
+
+    height:28px;
+
+    width:auto;
+
+    max-width:85px;
+
+    object-fit:contain;
+
+    transition:transform .35s ease;
+
+}
+
+.payment-card:hover img{
+
+    transform:scale(1.08);
+
+}
+
+
+/* ==========================================
+            PAYMENT GLOW
+========================================== */
+
+.payment-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-100%;
+
+    left:-35%;
+
+    width:35%;
+
+    height:250%;
+
+    background:rgba(255,255,255,.18);
+
+    transform:rotate(25deg);
+
+    transition:left .8s ease;
+
+    pointer-events:none;
+
+}
+
+.payment-card:hover::before{
+
+    left:140%;
+
+}
+
+.payment-note{
+
+    margin-top:24px;
+
+    color:#E3D8D2;
+
+    font-size:15px;
+
+    letter-spacing:1px;
+
+}
+
+
+/* ==========================================
+            FOOTER BOTTOM
+========================================== */
+
+.footer-bottom{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:35px 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.footer-copy{
+
+    color:#AAA29E;
+
+    font-size:14px;
+
+    letter-spacing:.5px;
+
+}
+
+.footer-crafted{
+
+    color:#C98A66;
+
+    font-size:14px;
+
+    letter-spacing:1px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+.footer-crafted i,
+.footer-crafted svg{
+
+    color:#E26D6D;
+
+    width:16px;
+
+    height:16px;
+
+}
+
+
+/* ==========================================
+            PREMIUM HOVER EFFECTS
+========================================== */
+
+.footer-brand h2,
+.footer-links h4,
+.footer-newsletter h4,
+.payment-title{
+
+    transition:color .35s ease;
+
+}
+
+.footer-brand:hover h2{
+
+    color:#C98A66;
+
+}
+
+.footer-links li:hover{
+
+    transform:translateX(5px);
+
+}
+
+
+/* ==========================================
+            FOOTER FADE
+========================================== */
+
+.footer{
+
+    animation:footerFade .8s ease;
+
+}
+
+@keyframes footerFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* ==========================================
+            SELECTION
+========================================== */
+
+.footer ::selection{
+
+    background:#C98A66;
+
+    color:#ffffff;
+
+}
+
+
+/* ==========================================
+        SMALL DESKTOP / TABLET
+========================================== */
+
+@media (max-width:1200px){
+
+    .footer{
+
+        padding:80px 6% 0;
+
+    }
+
+    .footer-container{
+
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+
+        gap:55px 45px;
+
+        padding-bottom:60px;
+
+    }
+
+    .footer-brand p{
+
+        max-width:400px;
+
+    }
+
+    .footer-newsletter{
+
+        min-width:0;
+
+    }
+
+    .payment-card{
+
+        width:130px;
+
+        height:70px;
+
+    }
+
+}
+
+
+/* ==========================================
+                MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+    .footer{
+
+        padding:65px 22px 0;
+
+    }
+
+
+    /* ======================================
+            MAIN FOOTER GRID
+    ====================================== */
+
+    .footer-container{
+
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+
+        gap:45px 24px;
+
+        padding-bottom:50px;
+
+        text-align:left;
+
+    }
+
+
+    /* ======================================
+                BRAND
+    ====================================== */
+
+    .footer-brand{
+
+        grid-column:1 / -1;
+
+        text-align:center;
+
+    }
+
+    .footer-brand h2{
+
+        font-size:42px;
+
+        margin-bottom:16px;
+
+    }
+
+    .footer-brand p{
+
+        max-width:380px;
+
+        margin:0 auto;
+
+        font-size:14px;
+
+        line-height:1.8;
+
+    }
+
+    .footer-social{
+
+        justify-content:center;
+
+        margin-top:25px;
+
+    }
+
+    .footer-social a{
+
+        width:44px;
+
+        height:44px;
+
+    }
+
+
+    /* ======================================
+                LINK COLUMNS
+    ====================================== */
+
+    .footer-links h4{
+
+        margin-bottom:20px;
+
+        font-size:12px;
+
+        letter-spacing:1.8px;
+
+    }
+
+    .footer-links li{
+
+        margin-bottom:13px;
+
+    }
+
+    .footer-links a{
+
+        font-size:14px;
+
+    }
+
+    /*
+        Customer Care is the third
+        .footer-links element in the footer.
+
+        Brand is the first child, therefore
+        Customer Care is the fourth child.
+    */
+
+    .footer-links:nth-of-type(4){
+
+        grid-column:1 / -1;
+
+    }
+
+
+    /* ======================================
+                NEWSLETTER
+    ====================================== */
+
+    .footer-newsletter{
+
+        grid-column:1 / -1;
+
+        text-align:center;
+
+        margin-top:5px;
+
+    }
+
+    .footer-newsletter h4{
+
+        margin-bottom:14px;
+
+    }
+
+    .footer-newsletter p{
+
+        max-width:390px;
+
+        margin:0 auto 24px;
+
+        font-size:14px;
+
+        line-height:1.7;
+
+    }
+
+    .footer-newsletter form{
+
+        max-width:430px;
+
+        margin:0 auto;
+
+        display:flex;
+
+        flex-direction:row;
+
+        gap:0;
+
+        border:1px solid rgba(255,255,255,.12);
+
+        border-radius:50px;
+
+        overflow:hidden;
+
+    }
+
+    .footer-newsletter input{
+
+        min-width:0;
+
+        padding:15px 18px;
+
+        border:none;
+
+        border-radius:0;
+
+    }
+
+    .footer-newsletter button{
+
+        flex-shrink:0;
+
+        padding:0 24px;
+
+        border-radius:0;
+
+    }
+
+
+    /* ======================================
+                PAYMENTS
+    ====================================== */
+
+    .payment-section{
+
+        padding:45px 0;
+
+    }
+
+    .payment-title{
+
+        margin-bottom:26px;
+
+        font-size:13px;
+
+        letter-spacing:4px;
+
+    }
+
+    .payment-strip{
+
+        gap:12px;
+
+    }
+
+    .payment-card{
+
+        width:100px;
+
+        height:58px;
+
+        border-radius:14px;
+
+    }
+
+    .payment-card img{
+
+        max-width:64px;
+
+        max-height:22px;
+
+    }
+
+    .payment-note{
+
+        margin-top:22px;
+
+        font-size:13px;
+
+        line-height:1.6;
+
+    }
+
+
+    /* ======================================
+            FOOTER BOTTOM
+    ====================================== */
+
+    .footer-bottom{
+
+        flex-direction:column;
+
+        justify-content:center;
+
+        gap:10px;
+
+        padding:26px 0;
+
+        text-align:center;
+
+    }
+
+    .footer-copy,
+    .footer-crafted{
+
+        font-size:13px;
+
+    }
+
+}
+
+
+/* ==========================================
+            SMALL MOBILE
+========================================== */
+
+@media (max-width:480px){
+
+    .footer{
+
+        padding:55px 18px 0;
+
+    }
+
+
+    /* BRAND */
+
+    .footer-brand h2{
+
+        font-size:38px;
+
+    }
+
+    .footer-brand p{
+
+        max-width:320px;
+
+        font-size:13px;
+
+    }
+
+    .footer-social{
+
+        gap:12px;
+
+    }
+
+    .footer-social a{
+
+        width:42px;
+
+        height:42px;
+
+    }
+
+
+    /* MAIN GRID */
+
+    .footer-container{
+
+        gap:38px 18px;
+
+        padding-bottom:42px;
+
+    }
+
+
+    /* LINKS */
+
+    .footer-links h4{
+
+        font-size:11px;
+
+        letter-spacing:1.5px;
+
+    }
+
+    .footer-links a{
+
+        font-size:13px;
+
+    }
+
+
+    /* NEWSLETTER */
+
+    .footer-newsletter p{
+
+        font-size:13px;
+
+    }
+
+    .footer-newsletter form{
+
+        width:100%;
+
+    }
+
+    .footer-newsletter input{
+
+        width:100%;
+
+        padding:14px 16px;
+
+        font-size:13px;
+
+    }
+
+    .footer-newsletter button{
+
+        padding:0 20px;
+
+        font-size:13px;
+
+    }
+
+
+    /* PAYMENTS */
+
+    .payment-section{
+
+        padding:38px 0;
+
+    }
+
+    .payment-title{
+
+        margin-bottom:22px;
+
+        font-size:12px;
+
+        letter-spacing:3px;
+
+    }
+
+    .payment-strip{
+
+        gap:10px;
+
+    }
+
+    .payment-card{
+
+        width:88px;
+
+        height:54px;
+
+        border-radius:12px;
+
+    }
+
+    .payment-card img{
+
+        max-width:58px;
+
+        max-height:21px;
+
+    }
+
+    .payment-note{
+
+        max-width:280px;
+
+        margin:20px auto 0;
+
+        font-size:12px;
+
+    }
+
+
+    /* BOTTOM */
+
+    .footer-bottom{
+
+        padding:24px 0;
+
+    }
+
+    .footer-copy,
+    .footer-crafted{
+
+        font-size:12px;
+
+    }
+
+}
+
+
+/* ==========================================
+        TOUCH DEVICES
+========================================== */
+
+@media (hover:none){
+
+    .footer-social a:hover{
+
+        background:transparent;
+
+        border-color:rgba(255,255,255,.10);
+
+        transform:none;
+
+    }
+
+    .footer-links li:hover{
+
+        transform:none;
+
+    }
+
+    .payment-card:hover{
+
+        transform:none;
+
+        background:#3E2F2A;
+
+        border-color:rgba(255,255,255,.12);
+
+        box-shadow:none;
+
+    }
+
+    .payment-card:hover img{
+
+        transform:none;
+
+    }
+
+    .payment-card::before{
+
+        display:none;
+
+    }
+
+}
+
+
+/* ==========================================
+        REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion:reduce){
+
+    .footer{
+
+        animation:none;
+
+    }
+
+    .footer::before{
+
+        animation:none;
+
+    }
+
+    .footer-social a,
+    .footer-links li,
+    .footer-links a,
+    .footer-links a::after,
+    .footer-newsletter input,
+    .footer-newsletter button,
+    .payment-card,
+    .payment-card img,
+    .payment-card::before{
+
+        transition:none;
+
+    }
+
+}
+
+/* =====================================================
+   FOOTER LINK HOVER ANIMATION
+===================================================== */
+
+.footer-links ul li a{
+
+    position:relative;
+
+    display:inline-block;
+
+    transition:color .35s ease;
+
+}
+
+.footer-links ul li a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-4px;
+
+    width:0;
+
+    height:1px;
+
+    background:#C47B52;
+
+    transition:width .35s ease;
+
+}
+
+.footer-links ul li a:hover{
+
+    color:#C47B52;
+
+}
+
+.footer-links ul li a:hover::after{
+
+    width:100%;
+
+}
+
+
+/* =====================================================
+   SOCIAL ICON HOVER
+===================================================== */
+
+.footer-social a{
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:all .35s ease;
+
+}
+
+.footer-social a:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#C47B52;
+
+    color:#C47B52;
+
+    box-shadow:0 10px 30px rgba(196,123,82,.20);
+
+}
+
+.footer-social a::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.20),
+        transparent
+    );
+
+    transform:translateX(-120%);
+
+    transition:.8s;
+
+}
+
+.footer-social a:hover::before{
+
+    transform:translateX(120%);
+
+}
+
+
+/* =====================================================
+   PAYMENT CARDS
+===================================================== */
+
+.payment-card{
+
+    transition:.35s ease;
+
+}
+
+.payment-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+
+/* =====================================================
+   FOOTER BRAND
+===================================================== */
+
+.footer-brand h2{
+
+    transition:.3s ease;
+
+}
+
+.footer-brand h2:hover{
+
+    color:#C47B52;
+
+}
+
+
+/* =====================================================
+   FOOTER BOTTOM
+===================================================== */
+
+.footer-crafted{
+
+    transition:.3s ease;
+
+}
+
+.footer-crafted:hover{
+
+    color:#C47B52;
+
+}
+
+.footer-crafted i{
+
+    transition:.35s ease;
+
+}
+
+.footer-crafted:hover i{
+
+    transform:scale(1.2);
+
+}
+
+/* =====================================================
+   BACK TO TOP
+===================================================== */
+
+.back-to-top{
+
+    position:fixed;
+
+    right:40px;
+
+    bottom:40px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:18px 28px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.94);
+
+    backdrop-filter:blur(16px);
+
+    color:#3E2B27;
+
+    cursor:pointer;
+
+    box-shadow:0 20px 55px rgba(0,0,0,.18);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(35px);
+
+    transition:all .4s ease;
+
+    z-index:9999;
+
+}
+
+.back-to-top.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+.back-to-top:hover{
+
+    transform:translateY(-6px);
+
+    background:#3E2B27;
+
+    color:#fff;
+
+    box-shadow:0 28px 60px rgba(62,43,39,.28);
+
+}
+
+.back-to-top svg{
+
+    width:22px;
+
+    height:22px;
+
+    transition:.3s ease;
+
+}
+
+.back-to-top:hover svg{
+
+    transform:translateY(-3px);
+
+}
+
+.back-to-top span{
+
+    font-size:13px;
+
+    font-weight:600;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    white-space:nowrap;
+
+}
+
+@media(max-width:768px){
+
+    .back-to-top{
+
+        right:20px;
+
+        bottom:20px;
+
+        padding:16px;
+
+        border-radius:50%;
+
+        width:60px;
+
+        height:60px;
+
+        justify-content:center;
+
+    }
+
+    .back-to-top span{
+
+        display:none;
+
+    }
+
+}
+
+/* ==========================================
+                PAGE HERO
+========================================== */
+
+.page-hero{
+    max-width:900px;
+    margin:0 auto;
+    text-align:center;
+    padding:120px 20px 70px;
+}
+
+.page-tag{
+    display:block;
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#b77952;
+    margin-bottom:20px;
+}
+
+.page-hero h1{
+    font-family:"Cormorant Garamond", serif;
+    font-size:72px;
+    font-weight:500;
+    margin-bottom:24px;
+    line-height:1;
+}
+
+.page-hero p{
+    max-width:650px;
+    margin:0 auto;
+    color:#666;
+    font-size:18px;
+    line-height:1.8;
+}
+
+
+/* ==========================================
+                TRACK ORDER
+========================================== */
+
+.track-order-section{
+    padding:0 20px 120px;
+}
+
+.track-card{
+    max-width:720px;
+    margin:0 auto;
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:24px;
+    padding:70px 60px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.05);
+}
+
+.track-icon{
+    margin-bottom:25px;
+}
+
+.track-icon svg{
+    width:56px;
+    height:56px;
+    color:#b77952;
+}
+
+.track-card h2{
+    font-family:"Cormorant Garamond", serif;
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.track-card p{
+    color:#666;
+    line-height:1.8;
+    margin-bottom:16px;
+}
+
+.track-card .shop-btn{
+    margin-top:20px;
+    display:inline-flex;
+}
+
+/* ==========================================
+                FAQ SECTION
+========================================== */
+
+.faq-section{
+    padding:0 20px 120px;
+}
+
+.faq-container{
+    max-width:900px;
+    margin:0 auto;
+}
+
+.faq-item{
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:20px;
+    padding:32px;
+    margin-bottom:20px;
+    transition:all .3s ease;
+}
+
+.faq-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 40px rgba(0,0,0,.06);
+}
+
+.faq-item h3{
+    font-family:"Cormorant Garamond", serif;
+    font-size:34px;
+    font-weight:500;
+    margin-bottom:12px;
+    color:#2f2f2f;
+}
+
+.faq-item p{
+    color:#666;
+    line-height:1.8;
+    font-size:16px;
+}

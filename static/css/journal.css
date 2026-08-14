@@ -1,0 +1,704 @@
+/* ==========================================
+        SHRUJA JOURNAL
+========================================== */
+
+.journal-section{
+
+    width:100%;
+
+    margin:140px 0;
+
+    overflow:hidden;
+
+}
+
+
+/* ==========================================
+        SECTION TITLE
+========================================== */
+
+.journal-section .section-title{
+
+    text-align:center;
+
+    margin-bottom:70px;
+
+    padding:0 24px;
+
+}
+
+.journal-section .section-title h2{
+
+    margin:0 0 14px;
+
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:72px;
+
+    font-weight:600;
+
+    line-height:1.05;
+
+    color:#342725;
+
+}
+
+.journal-section .section-title p{
+
+    max-width:600px;
+
+    margin:0 auto;
+
+    font-family:var(--font-body);
+
+    font-size:18px;
+
+    line-height:1.7;
+
+    color:#7A6C65;
+
+}
+
+
+/* ==========================================
+        SLIDER
+========================================== */
+
+.journal-slider{
+
+    position:relative;
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+
+/* Soft fade on the left and right edges */
+
+.journal-slider::before,
+.journal-slider::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    bottom:0;
+
+    width:90px;
+
+    z-index:10;
+
+    pointer-events:none;
+
+}
+
+.journal-slider::before{
+
+    left:0;
+
+    background:linear-gradient(
+        to right,
+        var(--color-bg),
+        transparent
+    );
+
+}
+
+.journal-slider::after{
+
+    right:0;
+
+    background:linear-gradient(
+        to left,
+        var(--color-bg),
+        transparent
+    );
+
+}
+
+
+/* ==========================================
+        TRACK
+========================================== */
+
+.journal-track{
+
+    display:flex;
+
+    align-items:center;
+
+    width:max-content;
+
+    gap:24px;
+
+    animation:journalScroll 45s linear infinite;
+
+    will-change:transform;
+
+}
+
+
+/* Pause on desktop hover */
+
+.journal-slider:hover .journal-track{
+
+    animation-play-state:paused;
+
+}
+
+
+/* ==========================================
+        JOURNAL CARD
+========================================== */
+
+.journal-card{
+
+    position:relative;
+
+    flex:0 0 280px;
+
+    width:280px;
+
+    height:390px;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    background:#EEE8E2;
+
+    text-decoration:none;
+
+    box-shadow:0 16px 40px rgba(0,0,0,.08);
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease;
+
+}
+
+.journal-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 28px 60px rgba(0,0,0,.16);
+
+}
+
+
+/* ==========================================
+        IMAGE
+========================================== */
+
+.journal-card img{
+
+    display:block;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:transform .8s ease;
+
+}
+
+.journal-card:hover img{
+
+    transform:scale(1.07);
+
+}
+
+
+/* ==========================================
+        OVERLAY
+========================================== */
+
+.journal-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:2;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:flex-start;
+
+    padding:24px;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.68) 0%,
+        rgba(0,0,0,.18) 45%,
+        transparent 72%
+    );
+
+    opacity:0;
+
+    transition:opacity .35s ease;
+
+}
+
+.journal-card:hover .journal-overlay{
+
+    opacity:1;
+
+}
+
+.journal-overlay span{
+
+    color:#FFFFFF;
+
+    font-family:var(--font-body);
+
+    font-size:12px;
+
+    font-weight:500;
+
+    line-height:1.4;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    transform:translateY(14px);
+
+    transition:transform .35s ease;
+
+}
+
+.journal-card:hover .journal-overlay span{
+
+    transform:translateY(0);
+
+}
+
+
+/* ==========================================
+        INFINITE SCROLL
+========================================== */
+
+@keyframes journalScroll{
+
+    from{
+
+        transform:translateX(0);
+
+    }
+
+    to{
+
+        transform:translateX(-50%);
+
+    }
+
+}
+
+
+/* ==========================================
+        TABLET
+========================================== */
+
+@media (max-width:992px){
+
+    .journal-section{
+
+        margin:110px 0;
+
+    }
+
+    .journal-section .section-title{
+
+        margin-bottom:55px;
+
+    }
+
+    .journal-section .section-title h2{
+
+        font-size:56px;
+
+    }
+
+    .journal-section .section-title p{
+
+        max-width:520px;
+
+        font-size:16px;
+
+    }
+
+    .journal-track{
+
+        gap:20px;
+
+        animation-duration:32s;
+
+    }
+
+    .journal-card{
+
+        flex-basis:240px;
+
+        width:240px;
+
+        height:335px;
+
+        border-radius:18px;
+
+    }
+
+    .journal-slider::before,
+    .journal-slider::after{
+
+        width:55px;
+
+    }
+
+}
+
+
+/* ==========================================
+        MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+    .journal-section{
+
+        margin:85px 0;
+
+    }
+
+    .journal-section .section-title{
+
+        margin-bottom:38px;
+
+        padding:0 22px;
+
+    }
+
+    .journal-section .section-title h2{
+
+        font-size:42px;
+
+        margin-bottom:10px;
+
+    }
+
+    .journal-section .section-title p{
+
+        max-width:340px;
+
+        font-size:14px;
+
+        line-height:1.6;
+
+    }
+
+    .journal-track{
+
+        gap:16px;
+
+        animation-duration:30s;
+
+    }
+
+    .journal-card{
+
+        flex-basis:210px;
+
+        width:210px;
+
+        height:295px;
+
+        border-radius:16px;
+
+    }
+
+    .journal-overlay{
+
+        padding:18px;
+
+    }
+
+    .journal-overlay span{
+
+        font-size:10px;
+
+        letter-spacing:1.5px;
+
+    }
+
+    .journal-slider::before,
+    .journal-slider::after{
+
+        width:30px;
+
+    }
+
+}
+
+
+/* ==========================================
+        SMALL MOBILE
+========================================== */
+
+@media (max-width:480px){
+
+    .journal-section{
+
+        margin:75px 0;
+
+    }
+
+    .journal-section .section-title{
+
+        margin-bottom:32px;
+
+        padding:0 18px;
+
+    }
+
+    .journal-section .section-title h2{
+
+        font-size:36px;
+
+    }
+
+    .journal-section .section-title p{
+
+        max-width:300px;
+
+        font-size:13px;
+
+    }
+
+    .journal-track{
+
+        gap:14px;
+
+        animation-duration:28s;
+
+    }
+
+    .journal-card{
+
+        flex-basis:185px;
+
+        width:185px;
+
+        height:260px;
+
+        border-radius:14px;
+
+    }
+
+    .journal-slider::before,
+    .journal-slider::after{
+
+        width:18px;
+
+    }
+
+}
+
+
+/* ==========================================
+        TOUCH DEVICES
+========================================== */
+
+@media (hover:none){
+
+    .journal-card:hover{
+
+        transform:none;
+
+        box-shadow:0 16px 40px rgba(0,0,0,.08);
+
+    }
+
+    .journal-card:hover img{
+
+        transform:none;
+
+    }
+
+    /*
+       Phones don't have hover, so keep the
+       Instagram label subtly visible.
+    */
+
+    .journal-overlay{
+
+        opacity:1;
+
+        background:linear-gradient(
+            to top,
+            rgba(0,0,0,.58) 0%,
+            transparent 48%
+        );
+
+    }
+
+    .journal-overlay span{
+
+        transform:none;
+
+    }
+
+}
+
+
+/* ==========================================
+        REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion:reduce){
+
+    .journal-track{
+
+        animation:none;
+
+    }
+
+    .journal-card,
+    .journal-card img,
+    .journal-overlay,
+    .journal-overlay span{
+
+        transition:none;
+
+    }
+
+}
+
+/* ==========================================
+        JOURNAL FINAL POLISH
+========================================== */
+
+.journal-section > .section-title{
+    width:100%;
+    max-width:900px;
+
+    margin:0 auto 70px;
+
+    padding:0 24px;
+
+    text-align:center;
+}
+
+.journal-section > .section-title h2{
+    width:100%;
+    margin:0 0 14px;
+
+    text-align:center;
+}
+
+.journal-section > .section-title p{
+    display:block;
+
+    width:100%;
+    max-width:600px;
+
+    margin:0 auto;
+
+    text-align:center;
+}
+
+
+/* ==========================================
+        TABLET
+========================================== */
+
+@media (max-width:992px){
+
+    .journal-section > .section-title{
+        margin-bottom:50px;
+    }
+
+}
+
+
+/* ==========================================
+        MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+    .journal-section{
+        margin:70px 0;
+    }
+
+    .journal-section > .section-title{
+        max-width:100%;
+
+        margin:0 auto 32px;
+
+        padding:0 20px;
+    }
+
+    .journal-section > .section-title h2{
+        font-size:42px;
+        line-height:1;
+    }
+
+    .journal-section > .section-title p{
+        max-width:330px;
+
+        font-size:14px;
+        line-height:1.6;
+    }
+
+}
+
+
+/* ==========================================
+        SMALL MOBILE
+========================================== */
+
+@media (max-width:480px){
+
+    .journal-section{
+        margin:60px 0;
+    }
+
+    .journal-section > .section-title{
+        margin-bottom:28px;
+        padding:0 18px;
+    }
+
+    .journal-section > .section-title h2{
+        font-size:38px;
+    }
+
+    .journal-section > .section-title p{
+        max-width:290px;
+        font-size:13px;
+    }
+
+    .journal-card{
+        flex:0 0 180px;
+
+        width:180px;
+        height:255px;
+    }
+
+    .journal-overlay{
+        padding:14px;
+    }
+
+    .journal-overlay span{
+        font-size:9px;
+        letter-spacing:1.2px;
+        white-space:nowrap;
+    }
+
+}

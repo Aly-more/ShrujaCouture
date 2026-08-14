@@ -1,0 +1,2052 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+My Profile | Shruja Couture
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-page">
+
+    <div class="profile-container">
+
+        <!-- ==========================================
+                PROFILE HEADER
+        =========================================== -->
+
+        <header class="profile-header">
+
+            <span class="profile-eyebrow">
+                MY ACCOUNT
+            </span>
+
+            <h1>
+                Welcome{% if request.user.first_name %},
+                {{ request.user.first_name }}{% endif %}
+            </h1>
+
+            <p>
+                Manage your personal details, addresses and account preferences.
+            </p>
+
+        </header>
+
+
+        <!-- ==========================================
+                PROFILE LAYOUT
+        =========================================== -->
+
+        <div class="profile-layout">
+
+
+            <!-- ======================================
+                    SIDEBAR
+            ======================================= -->
+
+            <aside class="profile-sidebar">
+
+                <div class="profile-user">
+
+                    <div class="profile-avatar">
+
+                        {% if request.user.profile_image %}
+
+                            <img
+                                src="{{ request.user.profile_image.url }}"
+                                alt="{{ request.user.first_name }}"
+                            >
+
+                        {% else %}
+
+                            <span>
+                                {% if request.user.first_name %}
+                                    {{ request.user.first_name|first|upper }}
+                                {% else %}
+                                    {{ request.user.email|first|upper }}
+                                {% endif %}
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="profile-user-info">
+
+                        <span>
+                            SIGNED IN AS
+                        </span>
+
+                        <h2>
+                            {% if request.user.first_name or request.user.last_name %}
+
+                                {{ request.user.first_name }}
+                                {{ request.user.last_name }}
+
+                            {% else %}
+
+                                Shruja Customer
+
+                            {% endif %}
+                        </h2>
+
+                        <p>
+                            {{ request.user.email }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <nav class="profile-nav">
+
+                    <a
+                        href="{% url 'profile' %}"
+                        class="profile-nav-link active"
+                    >
+
+                        <i data-lucide="user"></i>
+
+                        <span>
+                            My Profile
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="{% url 'orders:my_orders' %}"
+                        class="profile-nav-link"
+                    >
+
+                        <i data-lucide="package"></i>
+
+                        <span>
+                            My Orders
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="{% url 'wishlist' %}"
+                        class="profile-nav-link"
+                    >
+
+                        <i data-lucide="heart"></i>
+
+                        <span>
+                            Wishlist
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#saved-addresses"
+                        class="profile-nav-link"
+                    >
+
+                        <i data-lucide="map-pin"></i>
+
+                        <span>
+                            Addresses
+                        </span>
+
+                    </a>
+
+                </nav>
+
+
+                <a
+                    href="{% url 'logout' %}"
+                    class="profile-logout"
+                >
+
+                    <i data-lucide="log-out"></i>
+
+                    <span>
+                        Logout
+                    </span>
+
+                </a>
+
+            </aside>
+
+
+            <!-- ======================================
+                    MAIN CONTENT
+            ======================================= -->
+
+            <div class="profile-main">
+
+
+                <!-- ==================================
+                        PERSONAL INFORMATION
+                =================================== -->
+
+                <section class="profile-section">
+
+                    <div class="profile-section-heading">
+
+                        <div>
+
+                            <span>
+                                ACCOUNT DETAILS
+                            </span>
+
+                            <h2>
+                                Personal Information
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="profile-edit-btn"
+                            id="openEditProfile"
+                        >
+                            <i data-lucide="pencil"></i>
+
+                            <span>
+                                Edit Profile
+                            </span>
+                        </button>
+
+                    </div>
+
+
+                    <div class="profile-details-grid">
+
+
+                        <!-- FIRST NAME -->
+
+                        <div class="profile-detail">
+
+                            <span class="profile-detail-label">
+                                First Name
+                            </span>
+
+                            <p>
+
+                                {% if request.user.first_name %}
+
+                                    {{ request.user.first_name }}
+
+                                {% else %}
+
+                                    Not added
+
+                                {% endif %}
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- LAST NAME -->
+
+                        <div class="profile-detail">
+
+                            <span class="profile-detail-label">
+                                Last Name
+                            </span>
+
+                            <p>
+
+                                {% if request.user.last_name %}
+
+                                    {{ request.user.last_name }}
+
+                                {% else %}
+
+                                    Not added
+
+                                {% endif %}
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="profile-detail">
+
+                            <span class="profile-detail-label">
+                                Email Address
+                            </span>
+
+                            <p>
+                                {{ request.user.email }}
+                            </p>
+
+                        </div>
+
+
+                        <!-- PHONE -->
+
+                        <div class="profile-detail">
+
+                            <span class="profile-detail-label">
+                                Phone Number
+                            </span>
+
+                            <p>
+
+                                {% if request.user.phone_number %}
+
+                                    {{ request.user.phone_number }}
+
+                                {% else %}
+
+                                    Not added
+
+                                {% endif %}
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- DATE OF BIRTH -->
+
+                        <div class="profile-detail">
+
+                            <span class="profile-detail-label">
+                                Date of Birth
+                            </span>
+
+                            <p>
+
+                                {% if request.user.date_of_birth %}
+
+                                    {{ request.user.date_of_birth|date:"d F Y" }}
+
+                                {% else %}
+
+                                    Not added
+
+                                {% endif %}
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- GENDER -->
+
+                        <div class="profile-detail">
+
+                            <span class="profile-detail-label">
+                                Gender
+                            </span>
+
+                            <p>
+
+                                {% if request.user.gender %}
+
+                                    {{ request.user.gender }}
+
+                                {% else %}
+
+                                    Not added
+
+                                {% endif %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                        SAVED ADDRESSES
+                =================================== -->
+
+                <section
+                    class="profile-section address-section"
+                    id="saved-addresses"
+                >
+
+                    <div class="profile-section-heading">
+
+                        <div>
+
+                            <span>
+                                DELIVERY DETAILS
+                            </span>
+
+                            <h2>
+                                Saved Addresses
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="profile-add-address"
+                            id="openAddAddress"
+                        >
+                            <i data-lucide="plus"></i>
+
+                            Add Address
+                        </button>
+
+                    </div>
+
+
+                    {% if addresses %}
+
+                        <div class="address-grid">
+
+                            {% for address in addresses %}
+
+                                <article class="address-card">
+
+                                    <div class="address-card-top">
+
+                                        <div>
+
+                                            <span class="address-type">
+                                                {{ address.get_address_type_display }}
+                                            </span>
+
+                                            {% if address.is_default %}
+
+                                                <span class="default-address">
+                                                    Default
+                                                </span>
+
+                                            {% endif %}
+
+                                        </div>
+
+
+                                        <div class="address-menu">
+
+                                            <button
+                                                type="button"
+                                                class="address-menu-trigger"
+                                                aria-label="Address options"
+                                                aria-expanded="false"
+                                            >
+                                                <i data-lucide="more-horizontal"></i>
+                                            </button>
+
+
+                                            <div class="address-menu-dropdown">
+
+                                                {% if not address.is_default %}
+
+                                                    <form
+                                                        method="POST"
+                                                        action="{% url 'profile' %}"
+                                                    >
+
+                                                        {% csrf_token %}
+
+                                                        <input
+                                                            type="hidden"
+                                                            name="action"
+                                                            value="set_default_address"
+                                                        >
+
+                                                        <input
+                                                            type="hidden"
+                                                            name="address_id"
+                                                            value="{{ address.id }}"
+                                                        >
+
+                                                        <button
+                                                            type="submit"
+                                                            class="address-menu-item"
+                                                        >
+                                                            <i data-lucide="check-circle"></i>
+                                                            Set as Default
+                                                        </button>
+
+                                                    </form>
+
+                                                {% else %}
+
+                                                    <div class="address-menu-current">
+                                                        <i data-lucide="check-circle"></i>
+                                                        Default Address
+                                                    </div>
+
+                                                {% endif %}
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <h3>
+                                        {{ address.full_name }}
+                                    </h3>
+
+
+                                    <p class="address-text">
+
+                                        {{ address.address_line_1 }}
+
+                                        {% if address.address_line_2 %}
+
+                                            <br>
+
+                                            {{ address.address_line_2 }}
+
+                                        {% endif %}
+
+                                        <br>
+
+                                        {{ address.city }},
+                                        {{ address.state }}
+                                        {{ address.postal_code }}
+
+                                        <br>
+
+                                        {{ address.country }}
+
+                                    </p>
+
+
+                                    <p class="address-phone">
+
+                                        <i data-lucide="phone"></i>
+
+                                        {{ address.phone_number }}
+
+                                    </p>
+
+
+                                    <div class="address-actions">
+
+                                        <button
+                                            type="button"
+                                            class="edit-address-btn"
+                                            data-address-id="{{ address.id }}"
+                                            data-full-name="{{ address.full_name|escape }}"
+                                            data-phone-number="{{ address.phone_number|escape }}"
+                                            data-address-line-1="{{ address.address_line_1|escape }}"
+                                            data-address-line-2="{{ address.address_line_2|default:''|escape }}"
+                                            data-city="{{ address.city|escape }}"
+                                            data-state="{{ address.state|escape }}"
+                                            data-postal-code="{{ address.postal_code|escape }}"
+                                            data-country="{{ address.country|escape }}"
+                                            data-address-type="{{ address.address_type }}"
+                                            data-is-default="{% if address.is_default %}true{% else %}false{% endif %}"
+                                        >
+                                            Edit
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            class="remove-address-btn"
+                                            data-address-id="{{ address.id }}"
+                                            data-address-name="{{ address.full_name|escape }}"
+                                        >
+                                            Remove
+                                        </button>
+
+                                    </div>
+
+                                </article>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="address-empty">
+
+                            <div class="address-empty-icon">
+
+                                <i data-lucide="map-pin"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h3>
+                                    No saved addresses yet
+                                </h3>
+
+                                <p>
+                                    Add a delivery address to make checkout
+                                    faster next time.
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="address-empty-btn"
+                                id="openFirstAddress"
+                            >
+                                Add Your First Address
+                            </button>
+
+                        </div>
+
+                    {% endif %}
+
+                </section>
+
+
+                <!-- ==================================
+        ACCOUNT SECURITY
+=================================== -->
+
+<section class="profile-section security-section">
+
+    <div class="profile-section-heading">
+
+        <div>
+
+            <span>
+                SECURITY
+            </span>
+
+            <h2>
+                Password & Security
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================
+            PASSWORD
+    ======================================= -->
+
+    <div class="security-row">
+
+        <div class="security-icon">
+
+            <i data-lucide="lock-keyhole"></i>
+
+        </div>
+
+
+        <div class="security-info">
+
+            <h3>
+                Password
+            </h3>
+
+            <p>
+                Keep your account secure by using a strong password.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="security-btn"
+            id="openChangePassword"
+        >
+            Change Password
+        </button>
+
+    </div>
+
+</section>
+
+    
+ 
+
+
+
+                <!-- ==================================
+                        SHOPPING SHORTCUTS
+                =================================== -->
+
+                <div class="profile-shortcuts">
+
+                    <a
+                        href="{% url 'orders:my_orders' %}"
+                        class="profile-shortcut-card"
+                    >
+
+                        <div>
+
+                            <i data-lucide="package"></i>
+
+                        </div>
+
+                        <span>
+                            ORDERS
+                        </span>
+
+                        <h3>
+                            Track Your Orders
+                        </h3>
+
+                        <p>
+                            View your purchases and order history.
+                        </p>
+
+                        <strong>
+                            View Orders →
+                        </strong>
+
+                    </a>
+
+
+                    <a
+                        href="{% url 'wishlist' %}"
+                        class="profile-shortcut-card"
+                    >
+
+                        <div>
+
+                            <i data-lucide="heart"></i>
+
+                        </div>
+
+                        <span>
+                            SAVED PIECES
+                        </span>
+
+                        <h3>
+                            Your Wishlist
+                        </h3>
+
+                        <p>
+                            Return to the pieces you've fallen for.
+                        </p>
+
+                        <strong>
+                            View Wishlist →
+                        </strong>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+        EDIT PROFILE MODAL
+===================================================== -->
+
+<div
+    class="profile-modal"
+    id="editProfileModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="profile-modal-backdrop"
+        data-close-profile-modal
+    ></div>
+
+
+    <div
+        class="profile-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="editProfileTitle"
+    >
+
+        <!-- ==========================================
+                MODAL HEADER
+        =========================================== -->
+
+        <div class="profile-modal-header">
+
+            <div>
+
+                <span>
+                    PERSONAL INFORMATION
+                </span>
+
+                <h2 id="editProfileTitle">
+                    Edit Profile
+                </h2>
+
+                <p>
+                    Keep your Shruja Couture account details up to date.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="profile-modal-close"
+                id="closeEditProfile"
+                aria-label="Close edit profile"
+            >
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+        </div>
+
+        <!-- ==========================================
+                FORM
+        =========================================== -->
+
+        <form
+            method="POST"
+            action="{% url 'profile' %}"
+            enctype="multipart/form-data"
+            class="profile-edit-form"
+        >
+
+            {% csrf_token %}
+
+
+            <input
+                type="hidden"
+                name="action"
+                value="update_profile"
+            >
+
+
+            <!-- ======================================
+                    PROFILE PHOTO
+            ======================================= -->
+
+            <div class="profile-photo-editor">
+                <div class="profile-photo-preview">
+
+                    {% if request.user.profile_image %}
+
+                        <img
+                            src="{{ request.user.profile_image.url }}"
+                            alt="Profile photo"
+                            id="profileImagePreview"
+                        >
+
+                        <span
+                            id="profileImageInitial"
+                            style="display: none;"
+                        >
+                            {{ request.user.first_name|default:request.user.email|first|upper }}
+                        </span>
+
+                    {% else %}
+
+                        <img
+                            src=""
+                            alt=""
+                            id="profileImagePreview"
+                            hidden
+                            style="display: none;"
+                        >
+
+                        <span id="profileImageInitial">
+                            {{ request.user.first_name|default:request.user.email|first|upper }}
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="profile-photo-info">
+
+                        <span>
+                            PROFILE PHOTO
+                        </span>
+
+                        <h3>
+                            {% if request.user.profile_image %}
+                                Update your photo
+                            {% else %}
+                                Add your photo
+                            {% endif %}
+                        </h3>
+
+                        <p>
+                            Choose a clear JPG, PNG or WEBP image.
+                        </p>
+
+
+                        <div class="profile-photo-actions">
+
+                            <!-- CHOOSE PHOTO -->
+
+                            <label
+                                for="profile_image"
+                                class="profile-photo-button"
+                            >
+
+                                <i data-lucide="camera"></i>
+
+                                {% if request.user.profile_image %}
+                                    Change Photo
+                                {% else %}
+                                    Choose Photo
+                                {% endif %}
+
+                            </label>
+
+
+                            <!-- REMOVE PHOTO -->
+
+                            {% if request.user.profile_image %}
+
+                                <button
+                                    type="button"
+                                    class="profile-photo-remove"
+                                    id="removeProfilePhoto"
+                                >
+
+                                    <i data-lucide="trash-2"></i>
+
+                                    Remove Photo
+
+                                </button>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <input
+                            type="file"
+                            id="profile_image"
+                            name="profile_image"
+                            accept="image/jpeg,image/png,image/webp"
+                            hidden
+                        >
+
+
+                        <!--
+                            This tells Django whether the existing
+                            profile image should be removed.
+                        -->
+
+                        <input
+                            type="hidden"
+                            id="remove_profile_image"
+                            name="remove_profile_image"
+                            value="false"
+                        >
+
+                    </div>
+
+                </div>
+
+
+            <!-- ======================================
+                    FIRST + LAST NAME
+            ======================================= -->
+
+            <div class="profile-form-grid">
+
+                <div class="profile-form-field">
+
+                    <label for="edit_first_name">
+                        First Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="edit_first_name"
+                        name="first_name"
+                        value="{{ request.user.first_name }}"
+                        autocomplete="given-name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="profile-form-field">
+
+                    <label for="edit_last_name">
+                        Last Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="edit_last_name"
+                        name="last_name"
+                        value="{{ request.user.last_name }}"
+                        autocomplete="family-name"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                    EMAIL
+            ======================================= -->
+
+            <div class="profile-form-field">
+
+                <label for="edit_email">
+                    Email Address
+                </label>
+
+
+                <div class="profile-readonly-field">
+
+                    <i data-lucide="mail"></i>
+
+                    <input
+                        type="email"
+                        id="edit_email"
+                        value="{{ request.user.email }}"
+                        readonly
+                    >
+
+                    <span>
+                        Login email
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                    PHONE
+            ======================================= -->
+
+            <div class="profile-form-field">
+
+                <label for="edit_phone_number">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="edit_phone_number"
+                    name="phone_number"
+                    value="{{ request.user.phone_number|default:'' }}"
+                    placeholder="Enter your phone number"
+                    autocomplete="tel"
+                >
+
+            </div>
+
+
+            <!-- ======================================
+                    DOB + GENDER
+            ======================================= -->
+
+            <div class="profile-form-grid">
+
+                <div class="profile-form-field">
+
+                    <label for="edit_date_of_birth">
+                        Date of Birth
+                    </label>
+
+                    <input
+                        type="date"
+                        id="edit_date_of_birth"
+                        name="date_of_birth"
+                        value="{% if request.user.date_of_birth %}{{ request.user.date_of_birth|date:'Y-m-d' }}{% endif %}"
+                    >
+
+                </div>
+
+
+                <div class="profile-form-field">
+
+                    <label for="edit_gender">
+                        Gender
+                    </label>
+
+                    <select
+                        id="edit_gender"
+                        name="gender"
+                    >
+
+                        <option value="">
+                            Select gender
+                        </option>
+
+                        {% for value, label in request.user.Gender.choices %}
+
+                            <option
+                                value="{{ value }}"
+                                {% if request.user.gender == value %}selected{% endif %}
+                            >
+                                {{ label }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                    ACTIONS
+            ======================================= -->
+
+            <div class="profile-modal-actions">
+
+                <button
+                    type="button"
+                    class="profile-modal-cancel"
+                    data-close-profile-modal
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="profile-modal-save"
+                >
+
+                    Save Changes
+
+                    <i data-lucide="arrow-right"></i>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+        ADD ADDRESS MODAL
+===================================================== -->
+
+<div
+    class="profile-modal"
+    id="addAddressModal"
+    aria-hidden="true"
+>
+
+    <!-- BACKDROP -->
+
+    <div
+        class="profile-modal-backdrop"
+        data-close-address-modal
+    ></div>
+
+
+    <div
+        class="profile-modal-dialog address-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="addAddressTitle"
+    >
+
+        <!-- ==========================================
+                MODAL HEADER
+        =========================================== -->
+
+        <div class="profile-modal-header">
+
+            <div>
+
+                <span>
+                    DELIVERY DETAILS
+                </span>
+
+                <h2 id="addAddressTitle">
+                    Add Address
+                </h2>
+
+                <p id="addressModalDescription">
+                    Save your delivery details for a faster checkout.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="profile-modal-close"
+                id="closeAddAddress"
+                aria-label="Close add address"
+            >
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- ==========================================
+                ADDRESS FORM
+        =========================================== -->
+
+        <form
+            method="POST"
+            action="{% url 'profile' %}"
+            class="address-form"
+            id="addAddressForm"
+        >
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="action"
+                id="addressFormAction"
+                value="add_address"
+            >
+
+            <input
+                type="hidden"
+                name="address_id"
+                id="address_id"
+                value=""
+            >
+
+
+            <!-- ======================================
+                    FULL NAME + PHONE
+            ======================================= -->
+
+            <div class="profile-form-grid">
+
+                <div class="profile-form-field">
+
+                    <label for="address_full_name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="address_full_name"
+                        name="full_name"
+                        value="{{ request.user.get_full_name }}"
+                        placeholder="Enter full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="profile-form-field">
+
+                    <label for="address_phone_number">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="address_phone_number"
+                        name="address_phone_number"
+                        value="{{ request.user.phone_number|default:'' }}"
+                        placeholder="Enter phone number"
+                        autocomplete="tel"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                    ADDRESS LINE 1
+            ======================================= -->
+
+            <div class="profile-form-field">
+
+                <label for="address_line_1">
+                    Address Line 1
+                </label>
+
+                <input
+                    type="text"
+                    id="address_line_1"
+                    name="address_line_1"
+                    placeholder="Flat / House No., Building, Street"
+                    autocomplete="address-line1"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ======================================
+                    ADDRESS LINE 2
+            ======================================= -->
+
+            <div class="profile-form-field">
+
+                <label for="address_line_2">
+
+                    Address Line 2
+
+                    <span class="optional-label">
+                        Optional
+                    </span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="address_line_2"
+                    name="address_line_2"
+                    placeholder="Area, landmark, locality"
+                    autocomplete="address-line2"
+                >
+
+            </div>
+
+
+            <!-- ======================================
+                    CITY + STATE
+            ======================================= -->
+
+            <div class="profile-form-grid">
+
+                <div class="profile-form-field">
+
+                    <label for="address_city">
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="address_city"
+                        name="city"
+                        placeholder="City"
+                        autocomplete="address-level2"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="profile-form-field">
+
+                    <label for="address_state">
+                        State
+                    </label>
+
+                    <input
+                        type="text"
+                        id="address_state"
+                        name="state"
+                        placeholder="State"
+                        autocomplete="address-level1"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                    PIN CODE + COUNTRY
+            ======================================= -->
+
+            <div class="profile-form-grid">
+
+                <div class="profile-form-field">
+
+                    <label for="address_postal_code">
+                        PIN Code
+                    </label>
+
+                    <input
+                        type="text"
+                        id="address_postal_code"
+                        name="postal_code"
+                        placeholder="Enter PIN code"
+                        autocomplete="postal-code"
+                        inputmode="numeric"
+                        maxlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="profile-form-field">
+
+                    <label for="address_country">
+                        Country
+                    </label>
+
+                    <input
+                        type="text"
+                        id="address_country"
+                        name="country"
+                        value="India"
+                        autocomplete="country-name"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                    ADDRESS TYPE
+            ======================================= -->
+
+            <div class="profile-form-field">
+
+                <label>
+                    Address Type
+                </label>
+
+
+                <div class="address-type-options">
+
+
+                    <!-- HOME -->
+
+                    <label class="address-type-option">
+
+                        <input
+                            type="radio"
+                            name="address_type"
+                            value="HOME"
+                            checked
+                        >
+
+                        <span>
+
+                            <i data-lucide="house"></i>
+
+                            Home
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- WORK -->
+
+                    <label class="address-type-option">
+
+                        <input
+                            type="radio"
+                            name="address_type"
+                            value="WORK"
+                        >
+
+                        <span>
+
+                            <i data-lucide="briefcase-business"></i>
+
+                            Work
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- OTHER -->
+
+                    <label class="address-type-option">
+
+                        <input
+                            type="radio"
+                            name="address_type"
+                            value="OTHER"
+                        >
+
+                        <span>
+
+                            <i data-lucide="map-pin"></i>
+
+                            Other
+
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                    DEFAULT ADDRESS
+            ======================================= -->
+
+            <label class="default-address-option">
+
+                <input
+                    type="checkbox"
+                    name="is_default"
+                    value="true"
+                >
+
+
+                <span class="default-address-checkbox">
+
+                    <i data-lucide="check"></i>
+
+                </span>
+
+
+                <span class="default-address-copy">
+
+                    <strong>
+                        Set as default address
+                    </strong>
+
+                    <small>
+                        We'll use this address first during checkout.
+                    </small>
+
+                </span>
+
+            </label>
+
+
+            <!-- ======================================
+                    BUTTONS
+            ======================================= -->
+
+            <div class="profile-modal-actions">
+
+                <button
+                    type="button"
+                    class="profile-modal-cancel"
+                    data-close-address-modal
+                >
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="profile-modal-save"
+                    id="addressSubmitButton"
+                >
+
+                    <span id="addressSubmitText">Save Address</span>
+
+                    <i data-lucide="arrow-right"></i>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+        REMOVE ADDRESS MODAL
+===================================================== -->
+
+<div
+    class="profile-modal"
+    id="removeAddressModal"
+    aria-hidden="true"
+>
+
+    <!-- BACKDROP -->
+
+    <div
+        class="profile-modal-backdrop"
+        data-close-remove-address-modal
+    ></div>
+
+
+    <div
+        class="profile-modal-dialog remove-address-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="removeAddressTitle"
+    >
+
+        <!-- ==========================================
+                MODAL HEADER
+        =========================================== -->
+
+        <div class="profile-modal-header">
+
+            <div>
+
+                <span>
+                    SAVED ADDRESS
+                </span>
+
+                <h2 id="removeAddressTitle">
+                    Remove Address?
+                </h2>
+
+                <p>
+                    This address will be permanently removed
+                    from your saved addresses.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="profile-modal-close"
+                id="closeRemoveAddress"
+                aria-label="Close remove address"
+            >
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- ==========================================
+                ADDRESS PREVIEW
+        =========================================== -->
+
+        <div class="remove-address-content">
+
+            <div class="remove-address-icon">
+
+                <i data-lucide="map-pin"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    YOU'RE REMOVING
+                </span>
+
+                <h3 id="removeAddressName">
+                    Saved Address
+                </h3>
+
+                <p>
+                    You won't be able to use this address
+                    during checkout unless you add it again.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+                REMOVE FORM
+        =========================================== -->
+
+        <form
+            method="POST"
+            action="{% url 'profile' %}"
+            id="removeAddressForm"
+        >
+
+            {% csrf_token %}
+
+
+            <input
+                type="hidden"
+                name="action"
+                value="remove_address"
+            >
+
+
+            <input
+                type="hidden"
+                name="address_id"
+                id="removeAddressId"
+                value=""
+            >
+
+
+            <div class="profile-modal-actions">
+
+                <button
+                    type="button"
+                    class="profile-modal-cancel"
+                    data-close-remove-address-modal
+                >
+                    Keep Address
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="profile-modal-save remove-address-confirm"
+                >
+
+                    <i data-lucide="trash-2"></i>
+
+                    Remove Address
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+        CHANGE PASSWORD MODAL
+===================================================== -->
+
+<div
+    class="profile-modal"
+    id="changePasswordModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="profile-modal-backdrop"
+        data-close-password-modal
+    ></div>
+
+
+    <div
+        class="profile-modal-dialog password-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="changePasswordTitle"
+    >
+
+        <div class="profile-modal-header">
+
+            <div>
+
+                <span>
+                    ACCOUNT SECURITY
+                </span>
+
+                <h2 id="changePasswordTitle">
+                    Change Password
+                </h2>
+
+                <p>
+                    Choose a strong, unique password for your Shruja Couture account.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="profile-modal-close"
+                id="closeChangePassword"
+                aria-label="Close change password"
+            >
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <!-- =====================================================
+        CHANGE PASSWORD — FEEDBACK
+===================================================== -->
+
+{% if messages %}
+
+    {% for message in messages %}
+
+        {% if "password_error" in message.tags %}
+
+            <div
+                class="password-feedback password-feedback-error"
+                data-password-modal-reopen="true"
+            >
+                <i data-lucide="circle-alert"></i>
+
+                <span>
+                    {{ message }}
+                </span>
+            </div>
+
+        {% elif "password_success" in message.tags %}
+
+            <div
+                class="password-feedback password-feedback-success"
+            >
+                <i data-lucide="circle-check"></i>
+
+                <span>
+                    {{ message }}
+                </span>
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+{% endif %}
+
+
+
+
+        <form
+            method="POST"
+            action="{% url 'profile' %}"
+            class="change-password-form"
+            id="changePasswordForm"
+        >
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="action"
+                value="change_password"
+            >
+
+
+            <div class="profile-form-field">
+
+                <label for="current_password">
+                    Current Password
+                </label>
+
+                <div class="password-input-wrap">
+
+                    <input
+                        type="password"
+                        id="current_password"
+                        name="current_password"
+                        placeholder="Enter your current password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-password-toggle="current_password"
+                        aria-label="Show current password"
+                        aria-pressed="false"
+                    >
+                        <i data-lucide="eye"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-form-field">
+
+                <label for="new_password">
+                    New Password
+                </label>
+
+                <div class="password-input-wrap">
+
+                    <input
+                        type="password"
+                        id="new_password"
+                        name="new_password"
+                        placeholder="Enter your new password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-password-toggle="new_password"
+                        aria-label="Show new password"
+                        aria-pressed="false"
+                    >
+                        <i data-lucide="eye"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-form-field">
+
+                <label for="confirm_password">
+                    Confirm New Password
+                </label>
+
+                <div class="password-input-wrap">
+
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        placeholder="Re-enter your new password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-password-toggle="confirm_password"
+                        aria-label="Show confirmed password"
+                        aria-pressed="false"
+                    >
+                        <i data-lucide="eye"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="password-requirements">
+
+                <div class="password-requirements-icon">
+                    <i data-lucide="shield-check"></i>
+                </div>
+
+                <div>
+
+                    <strong>
+                        Create a secure password
+                    </strong>
+
+                    <p>
+                        Use a password that is difficult to guess and different
+                        from the password you currently use.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-modal-actions">
+
+                <button
+                    type="button"
+                    class="profile-modal-cancel"
+                    data-close-password-modal
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="profile-modal-save"
+                >
+                    Change Password
+                    <i data-lucide="arrow-right"></i>
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+        PASSWORD SUCCESS TOAST
+===================================================== -->
+
+{% if messages %}
+
+    {% for message in messages %}
+
+        {% if "password_success" in message.tags %}
+
+            <div
+                class="profile-toast profile-toast-success"
+                id="passwordSuccessToast"
+                role="status"
+                aria-live="polite"
+            >
+
+                <div class="profile-toast-icon">
+
+                    <i data-lucide="check"></i>
+
+                </div>
+
+
+                <div class="profile-toast-content">
+
+                    <strong>
+                        Password updated
+                    </strong>
+
+                    <span>
+                        {{ message }}
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="profile-toast-close"
+                    id="closePasswordSuccessToast"
+                    aria-label="Close notification"
+                >
+                    <i data-lucide="x"></i>
+                </button>
+
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+{% endif %}
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{% static 'js/profile.js' %}"></script>
+
+
+{% endblock %}

@@ -1,0 +1,521 @@
+{% load static %}
+
+<header class="site-header" id="siteHeader">
+
+    <nav class="navbar">
+
+        <!-- ==========================================
+                    TOP NAVBAR
+        =========================================== -->
+
+        <div class="nav-top">
+
+            <!-- ==========================================
+                    MOBILE MENU BUTTON
+            =========================================== -->
+
+            <div class="nav-left">
+
+                <button
+                    type="button"
+                    class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mobileMenu"
+                >
+
+                    <i data-lucide="menu"></i>
+
+                </button>
+
+            </div>
+
+
+            <!-- ==========================================
+                    LOGO
+            =========================================== -->
+
+            <div class="logo">
+
+                <a href="{% url 'products:home' %}">
+
+                    <img
+                        src="{% static 'images/logo4.png' %}"
+                        alt="Shruja Couture"
+                    >
+
+                    <span class="logo-tagline">
+                        Modern Indian Luxury
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- ==========================================
+                    RIGHT ACTION ICONS
+            =========================================== -->
+
+            <div class="nav-icons">
+
+
+                <!-- SEARCH -->
+
+                <button
+                    type="button"
+                    class="nav-icon-btn"
+                    id="searchBtn"
+                    aria-label="Search"
+                >
+
+                    <i data-lucide="search"></i>
+
+                </button>
+
+
+                <!-- WISHLIST -->
+
+                <a
+                    href="{% url 'wishlist' %}"
+                    class="nav-icon-btn wishlist-nav"
+                    aria-label="Wishlist"
+                >
+
+                    <i data-lucide="heart"></i>
+
+                    <span
+                        id="wishlist-count"
+                        class="nav-badge"
+                        {% if wishlist_count == 0 %}
+                            style="display:none;"
+                        {% endif %}
+                    >
+
+                        {{ wishlist_count }}
+
+                    </span>
+
+                </a>
+
+
+                <!-- CART -->
+
+                <a
+                    href="{% url 'cart' %}"
+                    class="nav-icon-btn cart-icon"
+                    aria-label="Shopping bag"
+                >
+
+                    <i data-lucide="shopping-bag"></i>
+
+                    <span
+                        id="cart-count"
+                        class="nav-badge"
+                        {% if cart_count == 0 %}
+                            style="display:none;"
+                        {% endif %}
+                    >
+
+                        {{ cart_count }}
+
+                    </span>
+
+                </a>
+
+
+                <!-- ==========================================
+                        ACCOUNT
+                =========================================== -->
+
+                <div class="account-dropdown">
+
+                    <button
+                        type="button"
+                        class="nav-icon-btn account-btn"
+                        id="accountBtn"
+                        aria-label="Account"
+                        aria-expanded="false"
+                    >
+
+                        <i data-lucide="user"></i>
+
+                    </button>
+
+
+                    <!-- ==========================================
+                            ACCOUNT DROPDOWN
+                    =========================================== -->
+
+                    <div
+                        class="account-menu"
+                        id="accountMenu"
+                    >
+
+                        {% if user.is_authenticated %}
+
+                            <div class="account-header">
+
+                                <span>
+                                    WELCOME BACK
+                                </span>
+
+                                <strong>
+                                    {{ user.first_name|default:user.username }}
+                                </strong>
+
+                            </div>
+
+
+                        <!-- MY PROFILE -->
+
+                        <a href="{% url 'profile' %}">
+                            My Profile
+                        </a>
+
+
+                        <!-- MY ORDERS -->
+
+                        <a href="{% url 'orders:my_orders' %}">
+                            My Orders
+                        </a>
+
+
+                        <!-- WISHLIST -->
+
+                        <a href="{% url 'wishlist' %}">
+                            Wishlist
+                        </a>
+
+                        <hr>
+
+
+                        <!-- LOGOUT -->
+
+                        <a href="{% url 'logout' %}">
+                            Logout
+                        </a>
+
+
+                        {% else %}
+
+                            <div class="account-header">
+
+                                <span>
+                                    WELCOME
+                                </span>
+
+                                <strong>
+                                    Shruja Couture
+                                </strong>
+
+                                <p>
+                                    Sign in to manage your account.
+                                </p>
+
+                            </div>
+
+
+                            <!-- LOGIN -->
+
+                            <a href="{% url 'login' %}">
+                                Login
+                            </a>
+
+
+                            <!-- REGISTER -->
+
+                            <a href="{% url 'register' %}">
+                                Register
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+                    DESKTOP NAVIGATION
+        =========================================== -->
+
+        <div class="nav-bottom">
+
+            <ul class="nav-links">
+                <li>
+
+                    <a href="{% url 'products:shop' %}">
+                        Shop by Category
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'products:new_arrivals' %}">
+                        New Arrivals
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'products:contact' %}">
+                        Contact
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ==========================================
+                MOBILE NAVIGATION DRAWER
+    =========================================== -->
+
+    <aside
+        class="mobile-menu"
+        id="mobileMenu"
+        aria-hidden="true"
+    >
+
+        <div class="mobile-menu-header">
+
+            <span>
+                MENU
+            </span>
+
+            <button
+                type="button"
+                class="close-menu"
+                id="closeMenu"
+                aria-label="Close navigation menu"
+            >
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+        </div>
+
+
+        <nav class="mobile-nav">
+
+            <!-- NEW ARRIVALS -->
+
+            <a href="{% url 'products:new_arrivals' %}">
+                New Arrivals
+            </a>
+
+
+            <!-- SHOP -->
+
+            <a href="{% url 'products:shop' %}">
+                Shop
+            </a>
+
+
+            <!-- COLLECTIONS -->
+
+            <a href="#">
+                Collections
+            </a>
+
+
+            <!-- ABOUT -->
+
+            <a href="#">
+                About
+            </a>
+
+
+            <!-- CONTACT -->
+
+            <a href="#">
+                Contact
+            </a>
+
+
+            <div class="mobile-nav-divider"></div>
+
+
+            <!-- WISHLIST -->
+
+            <a href="{% url 'wishlist' %}">
+                Wishlist
+            </a>
+
+
+            <!-- SHOPPING BAG -->
+
+            <a href="{% url 'cart' %}">
+                Shopping Bag
+            </a>
+
+
+            <!-- MY ORDERS -->
+
+            <a href="{% url 'orders:my_orders' %}">
+                My Orders
+            </a>
+
+
+            <!-- ==========================================
+                    MOBILE ACCOUNT LINKS
+            =========================================== -->
+
+            {% if user.is_authenticated %}
+
+                <!-- MY PROFILE -->
+
+                <a href="{% url 'profile' %}">
+                    My Profile
+                </a>
+
+                <!-- LOGOUT -->
+
+                <a href="{% url 'logout' %}">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <!-- LOGIN -->
+
+                <a href="{% url 'login' %}">
+                    Login
+                </a>
+
+                <!-- REGISTER -->
+
+                <a href="{% url 'register' %}">
+                    Register
+                </a>
+
+            {% endif %}
+        </nav>
+
+    </aside>
+
+
+    <!-- ==========================================
+                MOBILE MENU OVERLAY
+    =========================================== -->
+
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+    ></div>
+
+
+    <!-- ==========================================
+                SEARCH OVERLAY
+    =========================================== -->
+
+    <div
+        class="search-overlay"
+        id="searchOverlay"
+        aria-hidden="true"
+    >
+
+        <div class="search-panel">
+
+
+            <!-- ==========================================
+                    CLOSE SEARCH
+            =========================================== -->
+
+            <button
+                type="button"
+                class="search-close"
+                id="closeSearch"
+                aria-label="Close search"
+            >
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+
+            <!-- ==========================================
+                    SEARCH HEADING
+            =========================================== -->
+
+            <div class="search-heading">
+
+                <span>
+                    DISCOVER
+                </span>
+
+                <h2>
+                    What are you looking for?
+                </h2>
+
+            </div>
+
+
+            <!-- ==========================================
+                    SEARCH FORM
+            =========================================== -->
+
+            <form
+                class="search-form"
+                id="productSearchForm"
+                role="search"
+            >
+
+                <i data-lucide="search"></i>
+
+                <input
+                    type="search"
+                    id="productSearchInput"
+                    name="q"
+                    placeholder="Search dresses, kurtas, co-ords..."
+                    autocomplete="off"
+                    aria-label="Search products"
+                >
+
+                <button
+                    type="submit"
+                    class="search-submit"
+                >
+
+                    Search
+
+                </button>
+
+            </form>
+
+
+            <!-- ==========================================
+                    SEARCH RESULTS
+            =========================================== -->
+
+            <div
+                class="search-results"
+                id="searchResults"
+            >
+
+                <p class="search-hint">
+
+                    Start typing to discover Shruja Couture.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>

@@ -1,0 +1,569 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Checkout | Shruja Couture
+{% endblock %}
+
+{% block content %}
+<div class="checkout-page">
+
+    <!-- ==========================================
+            PAGE HEADER
+    ========================================== -->
+
+    <div class="checkout-header">
+
+        <span class="section-tag">
+            CHECKOUT
+        </span>
+
+        <h1>
+            Complete Your Order
+        </h1>
+
+        <p>
+            Review your delivery details before placing your order.
+        </p>
+
+    </div>
+
+
+    <div class="checkout-container">
+
+        <!-- ==========================================
+                LEFT SIDE
+        ========================================== -->
+
+        <div class="checkout-form">
+
+            {% include "includes/address_list.html" %}
+
+        </div>
+
+
+        <!-- ==========================================
+                RIGHT SIDE
+        ========================================== -->
+
+        <aside class="checkout-summary">
+
+            <h3>
+                Order Summary
+            </h3>
+
+            <!-- ==========================================
+                    PRODUCTS
+            ========================================== -->
+
+            <div class="summary-products">
+
+                {% for item in cart.values %}
+
+                <div class="summary-product">
+
+                    <a
+                        href="{% url 'products:product_detail' item.slug %}"
+                        class="summary-product-link"
+                    >
+
+                        <div class="summary-product-image">
+
+                            <img
+                                src="{{ item.image }}"
+                                alt="{{ item.name }}"
+                            >
+
+                        </div>
+
+                        <div class="summary-product-info">
+
+                            <h4>
+
+                                {{ item.name }}
+
+                            </h4>
+
+                            <p class="summary-edit-product">
+
+                                <span>Size {{ item.size }}</span>
+
+                                <span>Qty {{ item.quantity }}</span>
+
+                                <a href="{% url 'cart' %}" class="summary-edit-link">
+                                    Edit
+                                </a>
+
+                            </p>
+
+                        </div>
+
+                    </a>
+
+                    <div class="summary-product-price">
+
+                        ₹{{ item.price }}
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- ==========================================
+                    PRICE SUMMARY
+            ========================================== -->
+
+            <div class="price-summary">
+
+                <div class="price-row">
+
+                    <span>
+
+                        Subtotal
+
+                    </span>
+
+                    <strong>
+
+                        ₹{{ subtotal }}
+
+                    </strong>
+
+                </div>
+
+                <div class="price-row">
+
+                    <span>
+
+                        Shipping
+
+                    </span>
+
+                    <strong>
+
+                        {% if shipping == 0 %}
+
+                            FREE
+
+                        {% else %}
+
+                            ₹{{ shipping }}
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+                <div class="price-row total-row">
+
+                    <span>
+
+                        Total
+
+                    </span>
+
+                    <strong>
+
+                        ₹{{ total }}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================================
+                    PAYMENT METHOD
+            ========================================== -->
+
+            <div class="payment-method">
+
+                <h4>
+
+                    Payment Method
+
+                </h4>
+
+                <div class="payment-info">
+
+                    <div class="payment-icon">
+
+                        🔒
+
+                    </div>
+
+                    <div class="payment-content">
+
+                        <h5>
+
+                            Secure Payment via Razorpay
+
+                        </h5>
+
+                        <p>
+
+                            Supports UPI, Credit & Debit Cards,
+                            Net Banking and Wallets.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================================
+                    PLACE ORDER
+            ========================================== -->
+
+            {% if addresses %}
+
+            <button
+                id="proceed-payment-btn"
+                type="button"
+                class="place-order-btn"
+            >
+
+                Place Order &amp; Pay
+
+            </button>
+
+            {% else %}
+
+            <button
+                type="button"
+                class="place-order-btn"
+                disabled
+            >
+
+                Add an Address to Continue
+
+            </button>
+
+            {% endif %}
+
+        </aside>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+        ADDRESS MODAL
+========================================== -->
+
+<div class="address-modal" id="addressModal">
+
+    <div class="address-modal-content">
+
+    <button
+        type="button"
+        class="address-modal-close"
+    >
+
+        <i data-lucide="x"></i>
+
+    </button>
+
+    <span class="section-tag">
+
+        DELIVERY ADDRESS
+
+    </span>
+
+    <h2 id="addressModalTitle">
+
+        Add New Address
+
+    </h2>
+
+    <form
+        id="checkout-address-form"
+    >
+
+        <input
+            type="hidden"
+            id="editingAddressId"
+            value=""
+        >
+
+        <div class="address-grid">
+
+            <div class="form-group">
+
+                <label>
+
+                    Full Name
+
+                </label>
+
+                <input
+                    type="text"
+                    name="full_name"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Phone Number
+
+                </label>
+
+                <input
+                    type="text"
+                    name="phone_number"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+
+                Address Line 1
+
+            </label>
+
+            <input
+                type="text"
+                name="address_line_1"
+                required
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+
+                Address Line 2
+
+            </label>
+
+            <input
+                type="text"
+                name="address_line_2"
+            >
+
+        </div>
+
+        <div class="address-grid">
+
+            <div class="form-group">
+
+                <label>
+
+                    City
+
+                </label>
+
+                <input
+                    type="text"
+                    name="city"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    State
+
+                </label>
+
+                <input
+                    type="text"
+                    name="state"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+        <div class="address-grid">
+
+            <div class="form-group">
+
+                <label>
+
+                    Postal Code
+
+                </label>
+
+                <input
+                    type="text"
+                    name="postal_code"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group checkbox-group">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="is_default"
+                    >
+
+                    Make this my default address
+
+                </label>
+
+            </div>
+
+        </div>
+
+        <button
+            type="submit"
+            id="addressSubmitBtn"
+            class="place-order-btn"
+        >
+
+            Save Address
+
+        </button>
+
+    </form>
+
+</div>
+
+</div>
+<!-- ==========================================
+     CONFIRMATION MODAL
+========================================== -->
+
+<div
+    id="confirmModal"
+    class="confirm-modal">
+
+    <div class="confirm-modal-content">
+
+        <button
+            type="button"
+            class="confirm-modal-close">
+
+            &times;
+
+        </button>
+
+        <div class="confirm-modal-icon">
+
+            <i data-lucide="triangle-alert"></i>
+
+        </div>
+
+        <h2 id="confirmTitle">
+
+            Delete Address
+
+        </h2>
+
+        <p id="confirmMessage">
+
+            Are you sure you want to delete this address?
+
+        </p>
+
+        <div class="confirm-modal-actions">
+
+            <button
+                type="button"
+                id="confirmCancelBtn"
+                class="confirm-cancel-btn">
+
+                Cancel
+
+            </button>
+
+            <button
+                type="button"
+                id="confirmDeleteBtn"
+                class="confirm-delete-btn">
+
+                Delete Address
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     TOAST NOTIFICATION
+========================================== -->
+
+<div
+    id="checkoutToast"
+    class="checkout-toast"
+    role="status"
+    aria-live="polite"
+>
+
+    <div class="checkout-toast-icon">
+
+        <i data-lucide="check"></i>
+
+    </div>
+
+    <div class="checkout-toast-content">
+
+        <strong id="checkoutToastTitle">
+            Success
+        </strong>
+
+        <span id="checkoutToastMessage">
+            Address updated successfully.
+        </span>
+
+    </div>
+
+    <button
+        type="button"
+        id="checkoutToastClose"
+        class="checkout-toast-close"
+        aria-label="Close notification"
+    >
+        <i data-lucide="x"></i>
+    </button>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+<script>
+
+     const ORDER_SUCCESS_URL = "{% url 'orders:order_success' %}";
+
+</script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script src="{% static 'js/checkout.js' %}"></script>
+
+{% endblock %}

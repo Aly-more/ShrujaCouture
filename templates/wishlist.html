@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+My Wishlist | Shruja Couture
+{% endblock %}
+
+{% block content %}
+
+<section class="wishlist-page">
+
+    <!-- ==========================================
+            HEADER
+    =========================================== -->
+
+    <div class="wishlist-header">
+
+        <span class="wishlist-tag">
+            YOUR FAVORITES
+        </span>
+
+        <h1>
+            My Wishlist
+        </h1>
+
+        <p>
+            {{ wishlist_items|length }} Item{{ wishlist_items|pluralize }} Saved
+        </p>
+
+    </div>
+
+    {% if wishlist_items %}
+
+    <!-- ==========================================
+            GRID
+    =========================================== -->
+
+    <div class="wishlist-grid">
+
+        {% for item in wishlist_items %}
+
+        <article class="wishlist-card">
+
+            <!-- ==========================================
+                    PRODUCT IMAGE
+            =========================================== -->
+
+            <a
+                href="{% url 'products:product_detail' item.product.slug %}"
+                class="wishlist-image"
+            >
+
+                {% if item.product.has_discount %}
+                    <span class="wishlist-badge">
+                        SALE
+                    </span>
+                {% endif %}
+
+                {% if item.product.sold_out %}
+                    <span class="sold-out-badge">
+                        SOLD OUT
+                    </span>
+                {% endif %}
+
+                <div class="wishlist-image-wrapper">
+
+                    <img
+                        src="{{ item.product.main_image.url }}"
+                        alt="{{ item.product.name }}"
+                        class="wishlist-main-image {% if item.product.sold_out %}sold-image{% endif %}"
+                    >
+
+                    {% if item.product.hover_image %}
+
+                        <img
+                            src="{{ item.product.hover_image.url }}"
+                            alt="{{ item.product.name }}"
+                            class="wishlist-hover-image {% if item.product.sold_out %}sold-image{% endif %}"
+                        >
+
+                    {% endif %}
+
+                </div>
+
+            </a>
+
+            <!-- ==========================================
+                    CONTENT
+            =========================================== -->
+
+            <div class="wishlist-content">
+
+                <!-- TITLE -->
+
+                <div class="wishlist-title-row">
+
+                    <h3>
+
+                        <a href="{% url 'products:product_detail' item.product.slug %}">
+
+                            {{ item.product.name }}
+
+                        </a>
+
+                    </h3>
+
+                    <button
+                        type="button"
+                        class="wishlist-delete"
+                        data-product="{{ item.product.id }}"
+                        aria-label="Remove from Wishlist"
+                        title="Remove from Wishlist"
+                    >
+
+                        <i data-lucide="trash-2"></i>
+
+                    </button>
+
+                </div>
+
+                <!-- PRICE -->
+
+                <div class="wishlist-price">
+
+                    {% if item.product.has_discount %}
+
+                        <span class="discount">
+
+                            ₹{{ item.product.discount_price }}
+
+                        </span>
+
+                        <span class="original">
+
+                            ₹{{ item.product.price }}
+
+                        </span>
+
+                    {% else %}
+
+                        <span class="discount">
+
+                            ₹{{ item.product.price }}
+
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- ==========================================
+                        STOCK STATUS
+                =========================================== -->
+
+                {% if item.product.sold_out %}
+
+                    <div class="wishlist-stock sold-out">
+
+                        <span class="stock-dot"></span>
+
+                        Sold Out
+
+                    </div>
+
+                {% elif item.product.low_stock %}
+
+                    <div class="wishlist-stock low-stock">
+
+                        <span class="stock-dot"></span>
+
+                        Only {{ item.product.total_stock }} Left
+
+                    </div>
+
+                {% else %}
+
+                    <div class="wishlist-stock in-stock">
+
+                        <span class="stock-dot"></span>
+
+                        In Stock
+
+                    </div>
+
+                {% endif %}
+
+                <!-- ==========================================
+                        SIZE SELECTOR
+                =========================================== -->
+
+                <div class="wishlist-size-section hidden-size-picker">
+
+                    <span class="size-label">
+
+                        Choose your size
+
+                    </span>
+
+                    <div class="wishlist-sizes">
+
+                        {% for variant in item.product.variants.all %}
+
+                            <button
+                                type="button"
+                                class="wishlist-size-btn {% if variant.stock == 0 %}disabled{% endif %}"
+                                data-size="{{ variant.size }}"
+                                data-product="{{ item.product.id }}"
+                                {% if variant.stock == 0 %}disabled{% endif %}
+                            >
+
+                                {{ variant.size }}
+
+                            </button>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                <!-- ==========================================
+                        ADD TO BAG
+                =========================================== -->
+
+                <button
+                    type="button"
+                    class="wishlist-cart-btn {% if item.product.sold_out %}sold-btn{% endif %}"
+                    data-product="{{ item.product.id }}"
+                    data-size=""
+                    {% if item.product.sold_out %}disabled{% endif %}
+                >
+
+                    <i data-lucide="shopping-bag"></i>
+
+                    <span>
+
+                        {% if item.product.sold_out %}
+                            Sold Out
+                        {% else %}
+                            Add to Bag
+                        {% endif %}
+
+                    </span>
+
+                </button>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <!-- ==========================================
+            EMPTY STATE
+    =========================================== -->
+
+    <div class="wishlist-empty">
+
+        <div class="wishlist-heart">
+
+            ♡
+
+        </div>
+
+        <h2>
+
+            Your wishlist is empty
+
+        </h2>
+
+        <p>
+
+            Save your favourite pieces and they'll appear here.
+
+        </p>
+
+        <a
+            href="/"
+            class="shop-btn"
+        >
+
+            Continue Shopping
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'js/wishlist-page.js' %}"></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
+{% endblock %}

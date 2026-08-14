@@ -1,0 +1,170 @@
+
+            <div class="saved-addresses">
+
+                <div class="checkout-section-header">
+
+                <h3>
+
+                    Delivery Address
+
+                </h3>
+
+                <button
+                    type="button"
+                    id="checkout-add-address"
+                    class="add-address-btn">
+
+                    + Add New
+
+                </button>
+
+            </div>
+
+                {% for address in addresses %}
+
+                <label class="address-card">
+
+                    <input
+                        type="radio"
+                        name="address"
+                        value="{{ address.id }}"
+                        {% if address.is_default %}checked{% endif %}
+                    >
+
+                    <div class="selected-address-check">
+
+                        <i data-lucide="check"></i>
+
+                    </div>
+
+                    <div class="address-info">
+
+                        <div class="address-top">
+
+                            <div>
+
+                                <h4>
+
+                                    {{ address.full_name }}
+
+                                </h4>
+
+                                <p class="phone-number">
+
+                                    {{ address.phone_number }}
+
+                                </p>
+
+                            </div>
+
+                            {% if address.is_default %}
+
+                            <span class="default-badge">
+
+                                Default
+
+                            </span>
+
+                            {% endif %}
+
+                        </div>
+
+                        <p>
+                            {{ address.address_line_1 }}
+                        </p>
+
+                        {% if address.address_line_2 %}
+                        <p>
+                            {{ address.address_line_2 }}
+                        </p>
+                        {% endif %}
+
+                        <p>
+                            {{ address.city }},
+                            {{ address.state }}
+                            -
+                            {{ address.postal_code }}
+                        </p>
+
+                        <div class="address-actions">
+                            <button
+                                type="button"
+                                class="address-edit-btn"
+
+                                data-address="{{ address.id }}"
+
+                                data-full-name="{{ address.full_name }}"
+
+                                data-phone="{{ address.phone_number }}"
+
+                                data-address1="{{ address.address_line_1 }}"
+
+                                data-address2="{{ address.address_line_2 }}"
+
+                                data-city="{{ address.city }}"
+
+                                data-state="{{ address.state }}"
+
+                                data-postal="{{ address.postal_code }}"
+
+                                data-country="{{ address.country }}"
+
+                                data-default="{{ address.is_default|yesno:'true,false' }}"
+
+                                data-type="{{ address.address_type }}"
+                            >
+
+                                <i data-lucide="pencil"></i>
+
+                                <span>Edit</span>
+
+                            </button>
+
+                            <button
+                                type="button"
+                                class="address-delete-btn"
+                                data-address="{{ address.id }}"
+                            >
+
+                                <i data-lucide="trash-2"></i>
+
+                                <span>Delete</span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </label>
+
+                {% empty %}
+
+                <div class="no-address">
+
+                    <div class="no-address-icon">
+                        📍
+                    </div>
+
+                    <h3>
+                        No Saved Addresses
+                    </h3>
+
+                    <p>
+                        Add a delivery address to continue with your purchase.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="checkout-add-first-address"
+                        class="shop-btn">
+
+                        Add New Address
+
+                    </button>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
